@@ -1,0 +1,61 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package carcassone.features;
+
+import carcassone.followers.Follower;
+import carcassone.followers.Role;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author Morgan
+ */
+public abstract class AbsFeature implements IFeature {
+
+    protected final List<Follower> followers = new ArrayList<>();
+    
+    private final Role followerRole;
+
+    private int points = 0;
+
+    
+    public AbsFeature(Role followerRole) {
+        this.followerRole = followerRole;
+    }
+    
+    public List<Follower> getFollowers() {
+        return new ArrayList<>(followers);
+    }
+
+    @Override
+    public int getPoints() {
+        return points;
+    }
+    
+    @Override
+    public void addFollower(Follower follower) {
+        this.followers.add(follower);
+    }
+    
+    @Override
+    public void removeFollower(Follower follower) {
+        this.followers.remove(follower);
+    }
+    
+    @Override
+    public boolean hasFollowers() {
+        return !this.followers.isEmpty();
+    }
+    
+    @Override
+    public Role getFollowerRole() {
+        return this.followerRole;
+    }
+    
+    public int getNumFollowers() {
+        return followers.size();
+    }
+}
