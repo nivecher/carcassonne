@@ -16,7 +16,7 @@ import java.util.Map;
  * Landscape tile
  * @author Morgan
  */
-public class LandscapeTile extends AbsTile {
+public class LandscapeTile extends Tile {
     
     /**
      * Map of segments by tile position
