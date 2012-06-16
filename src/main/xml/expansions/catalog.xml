@@ -44,8 +44,8 @@ Version 2 license, then the option applies only if the new code is
 made subject to such option by the copyright holder.
 -->
 <!--
-    Document   : catalog.xml
-    Created on : June 16, 2012, 1:02 AM
+    Document   : catalog.xml.xml
+    Created on : June 16, 2012, 4:15 PM
     Author     : Morgan
     Description:
         Purpose of the OASIS XML Catalog document follows.
@@ -62,7 +62,9 @@ made subject to such option by the copyright holder.
     
     <!-- For XML schemas the <uri> element is recommended 
          to specify the resource, e.g: -->
-    <uri name="uri:carcassonne:tiles" uri="file:/basic-tiles.xsd"/>
+    <!--
+    <uri name="http://org.company/xml/schemas" uri="file:/path/schema.xsd"/>
+    -->
         
     <!-- If xsi:schemaLocation is specified in XML document e.g.
          xsi:schemaLocation="http://org.company/xml/schemas http://org.company/xml/schemas/schema.xsd"

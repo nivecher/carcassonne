@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<basic:tileSet
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xmlns:basic='urn:carcassonne:tiles'
+    xmlns:ic='urn:carcassonne:inns-cathedrals:tiles'
+    xsi:schemaLocation='urn:carcassonne:tiles ../basic-tiles.xsd
+   urn:carcassonne:inns-cathedrals:tiles inns-cathedrals-tiles.xsd'>
+    <basic:tile id="EA" instances="1">
+<!--TODO add field-->
+        <basic:road>
+            <basic:edge>south</basic:edge>
+            <basic:edge>west</basic:edge>
+            <ic:inn></ic:inn>
+        </basic:road>
+    </basic:tile>
+
+</basic:tileSet>

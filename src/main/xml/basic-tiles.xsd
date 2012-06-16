@@ -9,7 +9,7 @@ and open the template in the editor.
            xmlns:tns="urn:carcassonne:tiles"
            elementFormDefault="qualified"
            targetNamespace="urn:carcassonne:tiles">
-
+    
     <xs:simpleType name="edge">
         <xs:restriction base="xs:string">
             <xs:enumeration value="north"/>
@@ -32,13 +32,25 @@ and open the template in the editor.
         </xs:restriction>
     </xs:simpleType>
     
-    <xs:complexType name="feature" >
-        <xs:choice>
+    <xs:attributeGroup name="expansionAttributes">
+        <xs:anyAttribute/>
+    </xs:attributeGroup>
+
+    <xs:group name="expansionGroup">
+        <xs:sequence>
+            <xs:any minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:group>
+    
+    <xs:complexType name="feature" abstract="true">
+        <xs:sequence>
             <xs:element name="description" type="xs:string" minOccurs="0"/>
-        </xs:choice>
+            <xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+<!-- TODO       <xs:attributeGroup ref="tns:expansionAttributes"/>-->
     </xs:complexType>
     
-    <xs:complexType name="featureSegment">
+    <xs:complexType name="segment" abstract="true">
         <xs:complexContent>
             <xs:extension base="tns:feature">
                 <xs:choice>
@@ -50,7 +62,7 @@ and open the template in the editor.
 
     <xs:complexType name="city">
         <xs:complexContent>
-            <xs:extension base="tns:featureSegment">
+            <xs:extension base="tns:segment">
                 <xs:attribute name="pennants" type="xs:integer" default="0"/>
                 <xs:attribute name="followers" fixed="knights"/>
             </xs:extension>
@@ -67,7 +79,7 @@ and open the template in the editor.
     
     <xs:complexType name="field">
         <xs:complexContent>
-            <xs:extension base="tns:featureSegment">
+            <xs:extension base="tns:segment">
                 <xs:sequence>
                     <xs:element name="edgeSegment" type="tns:edgeSegment" 
                                 minOccurs="0" maxOccurs="8"/>
@@ -79,10 +91,35 @@ and open the template in the editor.
     
     <xs:complexType name="road">
         <xs:complexContent>
-            <xs:extension base="tns:featureSegment">
+            <xs:extension base="tns:segment">
                 <xs:attribute name="followers" fixed="thieves"/>
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
+    
+    <xs:complexType name="tile">
+        <xs:annotation>
+            <xs:documentation>
+                Standard game tiles
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="city" type="tns:city" minOccurs="0" maxOccurs="4"/>
+            <xs:element name="cloister" type="tns:cloister" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="field" type="tns:field" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="road" type="tns:road" minOccurs="0" maxOccurs="4"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:ID" use="required"/>
+        <xs:attribute name="instances" type="xs:positiveInteger" use="required"/>
+        <xs:attribute name="tag" type="xs:string"/>
+    </xs:complexType>
+    
+    <xs:element name="tileSet">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="tile" type="tns:tile" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
 
 </xs:schema>

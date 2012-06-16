@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:ic="urn:carcassonne:inns-cathedrals:tiles"
+           xmlns:basic="urn:carcassonne:tiles"
+           elementFormDefault="qualified"
+           targetNamespace="urn:carcassonne:inns-cathedrals:tiles">
+
+    <xs:import namespace="urn:carcassonne:tiles" schemaLocation="../basic-tiles.xsd"/>
+
+    <xs:complexType name="inn">
+        <xs:complexContent>
+            <xs:extension base="basic:feature">
+                <xs:annotation>
+                    <xs:documentation>
+                        Inns are attached to a single road on a tile
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:attribute ref="road"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+        
+</xs:schema>

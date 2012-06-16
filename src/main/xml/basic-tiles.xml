@@ -8,7 +8,7 @@ and open the template in the editor.
 <ns1:tileSet
     xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
     xmlns:ns1='urn:carcassonne:tiles'
-    xsi:schemaLocation='urn:carcassonne:tiles tiles.xsd'>
+    xsi:schemaLocation='urn:carcassonne:tiles basic-tiles.xsd'>
         
     <ns1:tile id="A" instances="2">
         <ns1:cloister/>
