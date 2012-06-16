@@ -4,7 +4,7 @@
  */
 package carcassonne.players;
 
-import carcassonne.features.IFeature;
+import carcassonne.tiles.features.IFeature;
 import carcassonne.followers.Color;
 import carcassonne.followers.Follower;
 import java.util.List;

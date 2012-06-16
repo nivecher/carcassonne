@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package carcassonne.features;
+package carcassonne.tiles.features;
 
 import carcassonne.tiles.Tile;
 import java.util.List;

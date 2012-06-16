@@ -4,8 +4,8 @@
  */
 package carcassonne.tiles;
 
-import carcassonne.features.IFeature;
-import carcassonne.features.ISegment;
+import carcassonne.tiles.features.IFeature;
+import carcassonne.tiles.features.ISegment;
 import carcassonne.followers.Follower;
 import java.util.ArrayList;
 import java.util.HashMap;

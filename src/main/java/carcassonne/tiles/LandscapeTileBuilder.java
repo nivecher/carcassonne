@@ -5,8 +5,8 @@
 package carcassonne.tiles;
 
 import carcassonne.board.Position;
-import carcassonne.features.IFeature;
-import carcassonne.features.ISegment;
+import carcassonne.tiles.features.IFeature;
+import carcassonne.tiles.features.ISegment;
 import carcassonne.tiles.ITile.Direction;
 import java.util.HashMap;
 import java.util.Map;

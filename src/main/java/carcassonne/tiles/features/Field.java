@@ -2,31 +2,28 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package carcassonne.features;
+package carcassonne.tiles.features;
 
 import carcassonne.followers.Role;
-import carcassonne.tiles.Tile;
 
 /**
  *
  * @author Morgan
  */
-public class Cloister extends AbsFeature {
-    
-    // TODO use tile group/position?
-    private final Tile centerTile;
-    
-    public Cloister(Tile centerTile) {
-        super(Role.Monk);
-        this.centerTile = centerTile;
+public class Field extends AbsSegmentedFeature<Field> {
+
+    public Field() {
+        super(Role.Farmer);
     }
 
     /**
-     * Returns whether the cloister is completely surrounded by tiles
+     * Returns whether the field is completely shut off from adding new
+     * segments
      * @return true if complete, false otherwise
      */
     @Override
     public boolean isComplete() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+    
 }
