@@ -11,13 +11,30 @@ and open the template in the editor.
     xmlns:ic='urn:carcassonne:inns-cathedrals:tiles'
     xsi:schemaLocation='urn:carcassonne:tiles ../basic-tiles.xsd
    urn:carcassonne:inns-cathedrals:tiles inns-cathedrals-tiles.xsd'>
+       
     <basic:tile id="EA" instances="1">
-<!--TODO add field-->
+        <basic:field>
+            <basic:edge>north</basic:edge>
+            <basic:edge>east</basic:edge>
+            <basic:edgeSegment>south-east</basic:edgeSegment>
+            <basic:edgeSegment>west-north</basic:edgeSegment>
+        </basic:field>
+        <basic:field>
+            <basic:description>Field in southwest quadrant</basic:description>
+            <basic:edgeSegment>west-south</basic:edgeSegment>
+            <basic:edgeSegment>south-west</basic:edgeSegment>
+        </basic:field>
         <basic:road>
+            <basic:description>Road leading to the inn</basic:description>
             <basic:edge>south</basic:edge>
             <basic:edge>west</basic:edge>
-            <ic:inn></ic:inn>
+            <ic:inn/>
         </basic:road>
+    </basic:tile>
+    
+<!--    TODO add EB-EJ-->
+    <basic:tile id="EK" instances="2">
+        <ic:cathedral/>
     </basic:tile>
 
 </basic:tileSet>

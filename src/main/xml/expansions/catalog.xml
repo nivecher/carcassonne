@@ -62,9 +62,7 @@ made subject to such option by the copyright holder.
     
     <!-- For XML schemas the <uri> element is recommended 
          to specify the resource, e.g: -->
-    <!--
-    <uri name="http://org.company/xml/schemas" uri="file:/path/schema.xsd"/>
-    -->
+    <uri name="urn:carcassonne:inns-cathedrals:tiles" uri="file:inns-cathedrals-tiles.xsd"/>
         
     <!-- If xsi:schemaLocation is specified in XML document e.g.
          xsi:schemaLocation="http://org.company/xml/schemas http://org.company/xml/schemas/schema.xsd"

@@ -32,11 +32,12 @@ and open the template in the editor.
         </ns1:field>
     </ns1:tile>
     <ns1:tile id="C" instances="1">
-        <ns1:city pennants="1">
+        <ns1:city>
             <ns1:edge>north</ns1:edge>
             <ns1:edge>east</ns1:edge>
             <ns1:edge>south</ns1:edge>
             <ns1:edge>west</ns1:edge>
+            <ns1:pennant/>
         </ns1:city>
     </ns1:tile>
     <ns1:tile id="D" instances="4" tag="Starting tile">
@@ -70,9 +71,10 @@ and open the template in the editor.
         </ns1:field>
     </ns1:tile>
     <ns1:tile id="F" instances="2">
-        <ns1:city pennants="1">
+        <ns1:city>
             <ns1:edge>east</ns1:edge>
             <ns1:edge>west</ns1:edge>
+            <ns1:pennant/>
         </ns1:city>
         <ns1:field>
             <ns1:edge>north</ns1:edge>
@@ -180,9 +182,10 @@ and open the template in the editor.
         </ns1:road>
     </ns1:tile>
     <ns1:tile id="M" instances="2">
-        <ns1:city pennants="1">
+        <ns1:city>
             <ns1:edge>north</ns1:edge>
             <ns1:edge>west</ns1:edge>
+            <ns1:pennant/>
         </ns1:city>
         <ns1:field>
             <ns1:edge>east</ns1:edge>
@@ -200,9 +203,10 @@ and open the template in the editor.
         </ns1:field>
     </ns1:tile>
     <ns1:tile id="O" instances="2">
-        <ns1:city pennants="1">
+        <ns1:city>
             <ns1:edge>north</ns1:edge>
             <ns1:edge>west</ns1:edge>
+            <ns1:pennant/>
         </ns1:city>
         <ns1:field>
             <ns1:edgeSegment>east-north</ns1:edgeSegment>
@@ -236,10 +240,11 @@ and open the template in the editor.
         </ns1:road>
     </ns1:tile>
     <ns1:tile id="Q" instances="1">
-        <ns1:city pennants="1">
+        <ns1:city>
             <ns1:edge>north</ns1:edge>
             <ns1:edge>east</ns1:edge>
             <ns1:edge>west</ns1:edge>
+            <ns1:pennant/>
         </ns1:city>
         <ns1:field>
             <ns1:edge>south</ns1:edge>
@@ -256,10 +261,11 @@ and open the template in the editor.
         </ns1:field>
     </ns1:tile>
     <ns1:tile id="S" instances="2">
-        <ns1:city pennants="1">
+        <ns1:city>
             <ns1:edge>north</ns1:edge>
             <ns1:edge>east</ns1:edge>
             <ns1:edge>west</ns1:edge>
+            <ns1:pennant/>
         </ns1:city>
         <ns1:field>
             <ns1:edgeSegment>south-east</ns1:edgeSegment>

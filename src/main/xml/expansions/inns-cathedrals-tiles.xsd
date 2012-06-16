@@ -21,7 +21,18 @@ and open the template in the editor.
                         Inns are attached to a single road on a tile
                     </xs:documentation>
                 </xs:annotation>
-                <xs:attribute ref="road"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:complexType name="cathedral">
+        <xs:complexContent>
+            <xs:extension base="basic:city">
+                <xs:annotation>
+                    <xs:documentation>
+                        Cathedrals are inside a city
+                    </xs:documentation>
+                </xs:annotation>
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
