@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<ns1:tileSet
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xmlns:ns1='urn:carcassonne:tiles'
+    xsi:schemaLocation='urn:carcassonne:tiles tiles.xsd'>
+        
+    <ns1:tile id="A" instances="2">
+        <ns1:cloister/>
+        <ns1:field>
+            <ns1:edge>north</ns1:edge>
+            <ns1:edge>east</ns1:edge>
+            <ns1:edge>south</ns1:edge>
+            <ns1:edge>west</ns1:edge>
+        </ns1:field>
+        <ns1:road>
+            <ns1:edge>south</ns1:edge>
+        </ns1:road>
+    </ns1:tile>
+    <ns1:tile id="B" instances="4">
+        <ns1:cloister/>
+        <ns1:field>
+            <ns1:edge>north</ns1:edge>
+            <ns1:edge>east</ns1:edge>
+            <ns1:edge>south</ns1:edge>
+            <ns1:edge>west</ns1:edge>
+        </ns1:field>
+    </ns1:tile>
+    <ns1:tile id="C" instances="1">
+        <ns1:city pennants="1">
+            <ns1:edge>north</ns1:edge>
+            <ns1:edge>east</ns1:edge>
+            <ns1:edge>south</ns1:edge>
+            <ns1:edge>west</ns1:edge>
+        </ns1:city>
+    </ns1:tile>
+    <ns1:tile id="D" instances="4" tag="Starting tile">
+        <ns1:city>
+            <ns1:edge>east</ns1:edge>
+        </ns1:city>
+        <ns1:field>
+            <ns1:description>Field west of road</ns1:description>
+            <ns1:edge>west</ns1:edge>
+            <ns1:edgeSegment>north-west</ns1:edgeSegment>
+            <ns1:edgeSegment>south-west</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:field>
+            <ns1:description>Field east of road</ns1:description>
+            <ns1:edgeSegment>north-east</ns1:edgeSegment>
+            <ns1:edgeSegment>south-east</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:road>
+            <ns1:edge>north</ns1:edge>
+            <ns1:edge>south</ns1:edge>
+        </ns1:road>
+    </ns1:tile>
+    <ns1:tile id="E" instances="5">
+        <ns1:city>
+            <ns1:edge>north</ns1:edge>
+        </ns1:city>
+        <ns1:field>
+            <ns1:edge>east</ns1:edge>
+            <ns1:edge>south</ns1:edge>
+            <ns1:edge>west</ns1:edge>
+        </ns1:field>
+    </ns1:tile>
+    <ns1:tile id="F" instances="2">
+        <ns1:city pennants="1">
+            <ns1:edge>east</ns1:edge>
+            <ns1:edge>west</ns1:edge>
+        </ns1:city>
+        <ns1:field>
+            <ns1:edge>north</ns1:edge>
+        </ns1:field>
+        <ns1:field>
+            <ns1:edge>south</ns1:edge>
+        </ns1:field>
+    </ns1:tile>
+    <ns1:tile id="G" instances="1">
+        <ns1:city>
+            <ns1:edge>north</ns1:edge>
+            <ns1:edge>south</ns1:edge>
+        </ns1:city>
+        <ns1:field>
+            <ns1:edge>east</ns1:edge>
+        </ns1:field>
+        <ns1:field>
+            <ns1:edge>west</ns1:edge>
+        </ns1:field>
+    </ns1:tile>
+    <ns1:tile id="H" instances="3">
+        <ns1:city>
+            <ns1:edge>east</ns1:edge>
+        </ns1:city>
+        <ns1:city>
+            <ns1:edge>west</ns1:edge>
+        </ns1:city>
+        <ns1:field>
+            <ns1:edge>north</ns1:edge>
+            <ns1:edge>south</ns1:edge>
+        </ns1:field>
+    </ns1:tile>
+    <ns1:tile id="I" instances="2">
+        <ns1:city>
+            <ns1:edge>east</ns1:edge>
+        </ns1:city>
+        <ns1:city>
+            <ns1:edge>south</ns1:edge>
+        </ns1:city>
+        <ns1:field>
+            <ns1:edge>north</ns1:edge>
+            <ns1:edge>west</ns1:edge>
+        </ns1:field>
+    </ns1:tile>
+    <ns1:tile id="J" instances="3">
+        <ns1:city>
+            <ns1:edge>north</ns1:edge>
+        </ns1:city>
+        <ns1:field>
+            <ns1:edge>west</ns1:edge>
+            <ns1:edgeSegment>south-west</ns1:edgeSegment>
+            <ns1:edgeSegment>east-north</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:field>
+            <ns1:edgeSegment>south-east</ns1:edgeSegment>
+            <ns1:edgeSegment>east-south</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:road>
+            <ns1:edge>east</ns1:edge>
+            <ns1:edge>south</ns1:edge>
+        </ns1:road>
+    </ns1:tile>
+    <ns1:tile id="K" instances="3">
+        <ns1:city>
+            <ns1:edge>east</ns1:edge>
+        </ns1:city>
+        <ns1:field>
+            <ns1:edgeSegment>west-north</ns1:edgeSegment>
+            <ns1:edgeSegment>north-west</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:field>
+            <ns1:edge>south</ns1:edge>
+            <ns1:edgeSegment>north-east</ns1:edgeSegment>
+            <ns1:edgeSegment>west-south</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:road>
+            <ns1:edge>north</ns1:edge>
+            <ns1:edge>west</ns1:edge>
+        </ns1:road>
+    </ns1:tile>
+    <ns1:tile id="L" instances="3">
+        <ns1:city>
+            <ns1:edge>east</ns1:edge>
+        </ns1:city>
+        <ns1:field>
+            <ns1:edgeSegment>west-north</ns1:edgeSegment>
+            <ns1:edgeSegment>north-west</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:field>
+            <ns1:edgeSegment>north-east</ns1:edgeSegment>
+            <ns1:edgeSegment>south-east</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:field>
+            <ns1:edgeSegment>west-south</ns1:edgeSegment>
+            <ns1:edgeSegment>south-west</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:road>
+            <ns1:edge>north</ns1:edge>
+        </ns1:road>
+        <ns1:road>
+            <ns1:edge>south</ns1:edge>
+        </ns1:road>
+        <ns1:road>
+            <ns1:edge>west</ns1:edge>
+        </ns1:road>
+    </ns1:tile>
+    <ns1:tile id="M" instances="2">
+        <ns1:city pennants="1">
+            <ns1:edge>north</ns1:edge>
+            <ns1:edge>west</ns1:edge>
+        </ns1:city>
+        <ns1:field>
+            <ns1:edge>east</ns1:edge>
+            <ns1:edge>south</ns1:edge>
+        </ns1:field>
+    </ns1:tile>
+    <ns1:tile id="N" instances="3">
+        <ns1:city>
+            <ns1:edge>north</ns1:edge>
+            <ns1:edge>west</ns1:edge>
+        </ns1:city>
+        <ns1:field>
+            <ns1:edge>east</ns1:edge>
+            <ns1:edge>south</ns1:edge>
+        </ns1:field>
+    </ns1:tile>
+    <ns1:tile id="O" instances="2">
+        <ns1:city pennants="1">
+            <ns1:edge>north</ns1:edge>
+            <ns1:edge>west</ns1:edge>
+        </ns1:city>
+        <ns1:field>
+            <ns1:edgeSegment>east-north</ns1:edgeSegment>
+            <ns1:edgeSegment>south-west</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:field>
+            <ns1:edgeSegment>east-south</ns1:edgeSegment>
+            <ns1:edgeSegment>south-east</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:road>
+            <ns1:edge>east</ns1:edge>
+            <ns1:edge>south</ns1:edge>
+        </ns1:road>
+    </ns1:tile>
+    <ns1:tile id="P" instances="3">
+        <ns1:city>
+            <ns1:edge>north</ns1:edge>
+            <ns1:edge>west</ns1:edge>
+        </ns1:city>
+        <ns1:field>
+            <ns1:edgeSegment>east-north</ns1:edgeSegment>
+            <ns1:edgeSegment>south-west</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:field>
+            <ns1:edgeSegment>east-south</ns1:edgeSegment>
+            <ns1:edgeSegment>south-east</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:road>
+            <ns1:edge>east</ns1:edge>
+            <ns1:edge>south</ns1:edge>
+        </ns1:road>
+    </ns1:tile>
+
+</ns1:tileSet>

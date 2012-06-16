@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="urn:carcassonne:tiles"
+           elementFormDefault="qualified"
+           targetNamespace="urn:carcassonne:tiles">
+
+    <xs:simpleType name="edge">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="north"/>
+            <xs:enumeration value="east"/>
+            <xs:enumeration value="south"/>
+            <xs:enumeration value="west"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:simpleType name="edgeSegment">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="north-west"/>
+            <xs:enumeration value="north-east"/>
+            <xs:enumeration value="east-north"/>
+            <xs:enumeration value="east-south"/>
+            <xs:enumeration value="south-west"/>
+            <xs:enumeration value="south-east"/>
+            <xs:enumeration value="west-north"/>
+            <xs:enumeration value="west-south"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:complexType name="feature" >
+        <xs:choice>
+            <xs:element name="description" type="xs:string" minOccurs="0"/>
+        </xs:choice>
+    </xs:complexType>
+    
+    <xs:complexType name="featureSegment">
+        <xs:complexContent>
+            <xs:extension base="tns:feature">
+                <xs:choice>
+                    <xs:element name="edge" type="tns:edge" minOccurs="0" maxOccurs="4"/>
+                </xs:choice>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="city">
+        <xs:complexContent>
+            <xs:extension base="tns:featureSegment">
+                <xs:attribute name="pennants" type="xs:integer" default="0"/>
+                <xs:attribute name="followers" fixed="knights"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="cloister">
+        <xs:complexContent>
+            <xs:extension base="tns:feature">
+                <xs:attribute name="followers" fixed="monks"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:complexType name="field">
+        <xs:complexContent>
+            <xs:extension base="tns:featureSegment">
+                <xs:sequence>
+                    <xs:element name="edgeSegment" type="tns:edgeSegment" 
+                                minOccurs="0" maxOccurs="8"/>
+                </xs:sequence>
+                <xs:attribute name="followers" fixed="farmers"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+    <xs:complexType name="road">
+        <xs:complexContent>
+            <xs:extension base="tns:featureSegment">
+                <xs:attribute name="followers" fixed="thieves"/>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+</xs:schema>

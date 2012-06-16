@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="urn:carcassonne:tiles"
+           elementFormDefault="qualified"
+           targetNamespace="urn:carcassonne:tiles">
+    
+    <xs:include schemaLocation="segments.xsd"/>
+    
+    <xs:complexType name="tile">
+        <xs:annotation>
+            <xs:documentation>
+                Standard game tiles
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="city" type="tns:city" minOccurs="0" maxOccurs="4"/>
+            <xs:element name="cloister" type="tns:cloister" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="field" type="tns:field" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="road" type="tns:road" minOccurs="0" maxOccurs="4"/>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:ID" use="required"/>
+        <xs:attribute name="instances" type="xs:positiveInteger" use="required"/>
+        <xs:attribute name="tag" type="xs:string"/>
+    </xs:complexType>
+    
+    <xs:element name="tileSet">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="tile" type="tns:tile" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
