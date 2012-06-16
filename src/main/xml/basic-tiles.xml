@@ -235,5 +235,159 @@ and open the template in the editor.
             <ns1:edge>south</ns1:edge>
         </ns1:road>
     </ns1:tile>
-
+    <ns1:tile id="Q" instances="1">
+        <ns1:city pennants="1">
+            <ns1:edge>north</ns1:edge>
+            <ns1:edge>east</ns1:edge>
+            <ns1:edge>west</ns1:edge>
+        </ns1:city>
+        <ns1:field>
+            <ns1:edge>south</ns1:edge>
+        </ns1:field>
+    </ns1:tile>
+    <ns1:tile id="R" instances="3">
+        <ns1:city>
+            <ns1:edge>north</ns1:edge>
+            <ns1:edge>east</ns1:edge>
+            <ns1:edge>west</ns1:edge>
+        </ns1:city>
+        <ns1:field>
+            <ns1:edge>south</ns1:edge>
+        </ns1:field>
+    </ns1:tile>
+    <ns1:tile id="S" instances="2">
+        <ns1:city pennants="1">
+            <ns1:edge>north</ns1:edge>
+            <ns1:edge>east</ns1:edge>
+            <ns1:edge>west</ns1:edge>
+        </ns1:city>
+        <ns1:field>
+            <ns1:edgeSegment>south-east</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:field>
+            <ns1:edgeSegment>south-west</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:road>
+            <ns1:edge>south</ns1:edge>
+        </ns1:road>
+    </ns1:tile>
+    <ns1:tile id="T" instances="1">
+        <ns1:city>
+            <ns1:edge>north</ns1:edge>
+            <ns1:edge>east</ns1:edge>
+            <ns1:edge>west</ns1:edge>
+        </ns1:city>
+        <ns1:field>
+            <ns1:edgeSegment>south-east</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:field>
+            <ns1:edgeSegment>south-west</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:road>
+            <ns1:edge>south</ns1:edge>
+        </ns1:road>
+    </ns1:tile>
+    <ns1:tile id="U" instances="8">
+        <ns1:field>
+            <ns1:description>Field west of road</ns1:description>
+            <ns1:edge>west</ns1:edge>
+            <ns1:edgeSegment>north-west</ns1:edgeSegment>
+            <ns1:edgeSegment>south-west</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:field>
+            <ns1:description>Field east of road</ns1:description>
+            <ns1:edge>east</ns1:edge>
+            <ns1:edgeSegment>north-east</ns1:edgeSegment>
+            <ns1:edgeSegment>south-east</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:road>
+            <ns1:edge>north</ns1:edge>
+            <ns1:edge>south</ns1:edge>
+        </ns1:road>
+    </ns1:tile>
+    <ns1:tile id="V" instances="9">
+        <ns1:field>
+            <ns1:edge>north</ns1:edge>
+            <ns1:edge>east</ns1:edge>
+            <ns1:edgeSegment>south-east</ns1:edgeSegment>
+            <ns1:edgeSegment>west-north</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:field>
+            <ns1:description>Field in southwest quadrant</ns1:description>
+            <ns1:edgeSegment>west-south</ns1:edgeSegment>
+            <ns1:edgeSegment>south-west</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:road>
+            <ns1:edge>south</ns1:edge>
+            <ns1:edge>west</ns1:edge>
+        </ns1:road>
+    </ns1:tile>
+    <ns1:tile id="W" instances="4">
+        <ns1:field>
+            <ns1:description>Field north of roads</ns1:description>
+            <ns1:edge>north</ns1:edge>
+            <ns1:edgeSegment>east-north</ns1:edgeSegment>
+            <ns1:edgeSegment>west-north</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:field>
+            <ns1:description>Field in southeast quadrant</ns1:description>
+            <ns1:edgeSegment>east-south</ns1:edgeSegment>
+            <ns1:edgeSegment>south-east</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:field>
+            <ns1:description>Field in southwest quadrant</ns1:description>
+            <ns1:edgeSegment>west-south</ns1:edgeSegment>
+            <ns1:edgeSegment>south-west</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:road>
+            <ns1:description>Road from village in center to the east edge</ns1:description>
+            <ns1:edge>east</ns1:edge>
+        </ns1:road>
+        <ns1:road>
+            <ns1:description>Road from village in center to the south edge</ns1:description>
+            <ns1:edge>south</ns1:edge>
+        </ns1:road>
+        <ns1:road>
+            <ns1:description>Road from village in center to the west edge</ns1:description>
+            <ns1:edge>west</ns1:edge>
+        </ns1:road>
+    </ns1:tile>
+    <ns1:tile id="X" instances="1">
+        <ns1:field>
+            <ns1:description>Field in northeast quadrant</ns1:description>
+            <ns1:edgeSegment>east-north</ns1:edgeSegment>
+            <ns1:edgeSegment>north-east</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:field>
+            <ns1:description>Field in northwest quadrant</ns1:description>
+            <ns1:edgeSegment>west-north</ns1:edgeSegment>
+            <ns1:edgeSegment>north-west</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:field>
+            <ns1:description>Field in southeast quadrant</ns1:description>
+            <ns1:edgeSegment>east-south</ns1:edgeSegment>
+            <ns1:edgeSegment>south-east</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:field>
+            <ns1:description>Field in southwest quadrant</ns1:description>
+            <ns1:edgeSegment>west-south</ns1:edgeSegment>
+            <ns1:edgeSegment>south-west</ns1:edgeSegment>
+        </ns1:field>
+        <ns1:road>
+            <ns1:description>Road from village in center to the north edge</ns1:description>
+            <ns1:edge>north</ns1:edge>
+        </ns1:road>
+        <ns1:road>
+            <ns1:description>Road from village in center to the east edge</ns1:description>
+            <ns1:edge>east</ns1:edge>
+        </ns1:road>
+        <ns1:road>
+            <ns1:description>Road from village in center to the south edge</ns1:description>
+            <ns1:edge>south</ns1:edge>
+        </ns1:road>
+        <ns1:road>
+            <ns1:description>Road from village in center to the west edge</ns1:description>
+            <ns1:edge>west</ns1:edge>
+        </ns1:road>
+    </ns1:tile>
 </ns1:tileSet>
