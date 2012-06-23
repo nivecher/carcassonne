@@ -9,26 +9,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.swing.text.Segment;
-import javax.xml.bind.annotation.XmlAnyAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Game tile
  *
  * @author Morgan
  */
-@XmlRootElement
-public class Tile implements ITile {
+public class AbsTile implements ITile {
     
     private final List<Segment> segments = new ArrayList<>();
     
     /**
-     * Tile identifier
+     * AbsTile identifier
      */
-    @XmlAnyAttribute
     private final String id;
 
-    public Tile(String id) {
+    public AbsTile(String id) {
         this.id = id;
     }
 
@@ -45,7 +41,7 @@ public class Tile implements ITile {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Tile other = (Tile) obj;
+        final AbsTile other = (AbsTile) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }

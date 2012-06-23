@@ -6,9 +6,9 @@ and open the template in the editor.
 
 <xs:schema version="1.0"
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:tns="urn:carcassonne:tiles"
+           xmlns:basic="urn:carcassonne:basic:tiles"
            elementFormDefault="qualified"
-           targetNamespace="urn:carcassonne:tiles">
+           targetNamespace="urn:carcassonne:basic:tiles">
     
     <xs:simpleType name="edge">
         <xs:restriction base="xs:string">
@@ -19,6 +19,11 @@ and open the template in the editor.
         </xs:restriction>
     </xs:simpleType>
     
+    <xs:annotation>
+        <xs:documentation>
+            Partial edge denoted by [primary edge]-[relative direction]
+        </xs:documentation>
+    </xs:annotation>
     <xs:simpleType name="edgeSegment">
         <xs:restriction base="xs:string">
             <xs:enumeration value="north-west"/>
@@ -32,29 +37,30 @@ and open the template in the editor.
         </xs:restriction>
     </xs:simpleType>
     
-    <xs:attributeGroup name="expansionAttributes">
-        <xs:anyAttribute/>
-    </xs:attributeGroup>
-
-    <xs:group name="expansionGroup">
-        <xs:sequence>
-            <xs:any minOccurs="0" maxOccurs="unbounded"/>
-        </xs:sequence>
-    </xs:group>
-    
+    <xs:annotation>
+        <xs:documentation>
+            Features can contain other features
+        </xs:documentation>
+    </xs:annotation>
     <xs:complexType name="feature" abstract="true">
         <xs:sequence>
             <xs:element name="description" type="xs:string" minOccurs="0"/>
-            <xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="basic:feature" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
-        <xs:anyAttribute/>
     </xs:complexType>
     
+    <xs:annotation>
+        <xs:documentation>
+            Segments are partial features when combined with other feature
+            segments of the same type on different tiles, comprise entirely
+            features.
+        </xs:documentation>
+    </xs:annotation>
     <xs:complexType name="segment" abstract="true">
         <xs:complexContent>
-            <xs:extension base="tns:feature">
+            <xs:extension base="basic:feature">
                 <xs:choice>
-                    <xs:element name="edge" type="tns:edge" minOccurs="0" maxOccurs="4"/>
+                    <xs:element name="edge" type="basic:edge" minOccurs="0" maxOccurs="4"/>
                 </xs:choice>
             </xs:extension>
         </xs:complexContent>
@@ -62,7 +68,7 @@ and open the template in the editor.
     
     <xs:complexType name="pennant">
         <xs:complexContent>
-            <xs:extension base="tns:feature">
+            <xs:extension base="basic:feature">
                 <xs:annotation>
                     <xs:documentation>
                         Pennants are attached to a city
@@ -74,9 +80,9 @@ and open the template in the editor.
 
     <xs:complexType name="city">
         <xs:complexContent>
-            <xs:extension base="tns:segment">
+            <xs:extension base="basic:segment">
                 <xs:sequence>
-                    <xs:element name="pennant" type="tns:pennant" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="pennant" type="basic:pennant" minOccurs="0" maxOccurs="unbounded"/>
                 </xs:sequence>
                 <xs:attribute name="followers" fixed="knights"/>
             </xs:extension>
@@ -85,7 +91,7 @@ and open the template in the editor.
 
     <xs:complexType name="cloister">
         <xs:complexContent>
-            <xs:extension base="tns:feature">
+            <xs:extension base="basic:feature">
                 <xs:attribute name="followers" fixed="monks"/>
             </xs:extension>
         </xs:complexContent>
@@ -93,19 +99,19 @@ and open the template in the editor.
     
     <xs:complexType name="field">
         <xs:complexContent>
-            <xs:extension base="tns:segment">
-                <xs:sequence>
-                    <xs:element name="edgeSegment" type="tns:edgeSegment" 
+                <xs:extension base="basic:segment">
+                    <xs:sequence>
+                        <xs:element name="edgeSegment" type="basic:edgeSegment" 
                                 minOccurs="0" maxOccurs="8"/>
-                </xs:sequence>
-                <xs:attribute name="followers" fixed="farmers"/>
-            </xs:extension>
+                    </xs:sequence>
+                    <xs:attribute name="followers" fixed="farmers"/>
+                </xs:extension>
         </xs:complexContent>
     </xs:complexType>
     
     <xs:complexType name="road">
         <xs:complexContent>
-            <xs:extension base="tns:segment">
+            <xs:extension base="basic:segment">
                 <xs:attribute name="followers" fixed="thieves"/>
             </xs:extension>
         </xs:complexContent>
@@ -118,21 +124,25 @@ and open the template in the editor.
             </xs:documentation>
         </xs:annotation>
         <xs:sequence>
-            <xs:element name="city" type="tns:city" minOccurs="0" maxOccurs="4"/>
-            <xs:element name="cloister" type="tns:cloister" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="field" type="tns:field" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="road" type="tns:road" minOccurs="0" maxOccurs="4"/>
-            <xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element ref="basic:feature" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attribute name="id" type="xs:ID" use="required"/>
         <xs:attribute name="instances" type="xs:positiveInteger" use="required"/>
         <xs:attribute name="tag" type="xs:string"/>
     </xs:complexType>
     
+    <xs:element name="feature" type="basic:feature" abstract="true"/>
+    <xs:element name="segment" type="basic:segment" abstract="true" substitutionGroup="basic:feature"/>
+    
+    <xs:element name="cloister" type="basic:cloister" substitutionGroup="basic:feature"/>
+    <xs:element name="city" type="basic:city" substitutionGroup="basic:segment"/>
+    <xs:element name="field" type="basic:field" substitutionGroup="basic:segment"/>
+    <xs:element name="road" type="basic:road" substitutionGroup="basic:segment"/>
+    
     <xs:element name="tileSet">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="tile" type="tns:tile" maxOccurs="unbounded"/>
+                <xs:element name="tile" type="basic:tile" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

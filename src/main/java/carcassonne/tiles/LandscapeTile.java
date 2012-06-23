@@ -4,6 +4,7 @@
  */
 package carcassonne.tiles;
 
+import carcassonne.basic.tiles.Tile;
 import carcassonne.tiles.features.IFeature;
 import carcassonne.tiles.features.ISegment;
 import carcassonne.followers.Follower;
@@ -16,15 +17,15 @@ import java.util.Map;
  * Landscape tile
  * @author Morgan
  */
-public class LandscapeTile extends Tile {
+public class LandscapeTile extends AbsTile {
     
     /**
      * Map of segments by tile position
      */
     private Map<Direction, ISegment> segmentMap = new HashMap<>();
 
-    LandscapeTile(String id) {
-        super(id);
+    LandscapeTile(Tile basicTile) {
+        super(basicTile.getId());
     }
 
     public List<IFeature> getFeatures() {

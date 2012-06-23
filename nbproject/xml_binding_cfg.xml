@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<schemas xmlns='http://xml.netbeans.org/schema/JAXBWizConfig' destdir='build/generated-sources/jaxb' projectName='Carcassonne' version='1.0'>
+	<schema type='-xmlschema' package='' name='Basic Tiles'>
+		<xjc-options>
+		</xjc-options>
+		<schema-sources>
+			<schema-source location='xml-resources/jaxb/Basic Tiles/basic-tiles.xsd' origLocation='src/main/xml/basic-tiles.xsd'/>
+		</schema-sources>
+		<bindings>
+		</bindings>
+		<catalog/>
+	</schema>
+	<schema type='-xmlschema' package='' name='Inns &amp; Cathedrals Tiles'>
+		<xjc-options>
+		</xjc-options>
+		<schema-sources>
+			<schema-source location='xml-resources/jaxb/Inns &amp; Cathedrals Tiles/inns-cathedrals-tiles.xsd' origLocation='src/main/xml/expansions/inns-cathedrals-tiles.xsd'/>
+		</schema-sources>
+		<bindings>
+		</bindings>
+		<catalog/>
+	</schema>
+</schemas>

@@ -5,7 +5,7 @@
 package carcassonne.tiles.features;
 
 import carcassonne.followers.Role;
-import carcassonne.tiles.Tile;
+import carcassonne.tiles.AbsTile;
 
 /**
  *
@@ -14,9 +14,9 @@ import carcassonne.tiles.Tile;
 public class Cloister extends AbsFeature {
     
     // TODO use tile group/position?
-    private final Tile centerTile;
+    private final AbsTile centerTile;
     
-    public Cloister(Tile centerTile) {
+    public Cloister(AbsTile centerTile) {
         super(Role.Monk);
         this.centerTile = centerTile;
     }

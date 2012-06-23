@@ -4,7 +4,7 @@
  */
 package carcassonne.tiles.features;
 
-import carcassonne.tiles.Tile;
+import carcassonne.tiles.AbsTile;
 import java.util.List;
 
 /**

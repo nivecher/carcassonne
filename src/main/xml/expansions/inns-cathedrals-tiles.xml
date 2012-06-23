@@ -7,9 +7,9 @@ and open the template in the editor.
 
 <basic:tileSet
     xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
-    xmlns:basic='urn:carcassonne:tiles'
+    xmlns:basic='urn:carcassonne:basic:tiles'
     xmlns:ic='urn:carcassonne:inns-cathedrals:tiles'
-    xsi:schemaLocation='urn:carcassonne:tiles ../basic-tiles.xsd
+    xsi:schemaLocation='urn:carcassonne:basic:tiles ../basic-tiles.xsd
    urn:carcassonne:inns-cathedrals:tiles inns-cathedrals-tiles.xsd'>
        
     <basic:tile id="EA" instances="1">
@@ -24,12 +24,12 @@ and open the template in the editor.
             <basic:edgeSegment>west-south</basic:edgeSegment>
             <basic:edgeSegment>south-west</basic:edgeSegment>
         </basic:field>
-        <basic:road>
+        <ic:road>
             <basic:description>Road leading to the inn</basic:description>
             <basic:edge>south</basic:edge>
             <basic:edge>west</basic:edge>
             <ic:inn/>
-        </basic:road>
+        </ic:road>
     </basic:tile>
     
 <!--    TODO add EB-EJ-->

@@ -7,18 +7,18 @@ and open the template in the editor.
 <xs:schema version="1.0"
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:ic="urn:carcassonne:inns-cathedrals:tiles"
-           xmlns:basic="urn:carcassonne:tiles"
+           xmlns:basic="urn:carcassonne:basic:tiles"
            elementFormDefault="qualified"
            targetNamespace="urn:carcassonne:inns-cathedrals:tiles">
 
-    <xs:import namespace="urn:carcassonne:tiles" schemaLocation="../basic-tiles.xsd"/>
+    <xs:import namespace="urn:carcassonne:basic:tiles" schemaLocation="../basic-tiles.xsd"/>
 
     <xs:complexType name="inn">
         <xs:complexContent>
             <xs:extension base="basic:feature">
                 <xs:annotation>
                     <xs:documentation>
-                        Inns are attached to a single road on a tile
+                        Inns are attached to a road
                     </xs:documentation>
                 </xs:annotation>
             </xs:extension>
@@ -36,5 +36,19 @@ and open the template in the editor.
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
+    
+    <xs:complexType name="road">
+        <xs:complexContent>
+            <xs:extension base="basic:road">
+                <xs:sequence>
+                    <xs:element name="inn" type="ic:inn" minOccurs="0" maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    
+<!--    <xs:element name="inn" type="ic:inn" substitutionGroup="basic:feature"/>-->
+    <xs:element name="road" type="ic:road" substitutionGroup="basic:road"/>
+    <xs:element name="cathedral" type="ic:cathedral" substitutionGroup="basic:city"/>
         
 </xs:schema>
