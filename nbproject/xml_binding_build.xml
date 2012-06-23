@@ -13,33 +13,33 @@
     <target name="jaxb-code-generation" depends="xjc-typedef-target,-do-init,-init-macrodef-javac">
         <mkdir dir="${build.generated.sources.dir}/jaxb" xmlns:s="http://xml.netbeans.org/schema/JAXBWizConfig"/>
         <mkdir dir="build/generated/jaxbCache" xmlns:s="http://xml.netbeans.org/schema/JAXBWizConfig"/>
-        <mkdir dir="build/generated/jaxbCache/Basic Tiles"/>
-        <xjc destdir="build/generated/jaxbCache/Basic Tiles" catalog="catalog.xml">
+        <mkdir dir="build/generated/jaxbCache/basic"/>
+        <xjc destdir="build/generated/jaxbCache/basic" catalog="catalog.xml">
             <classpath>
                 <pathelement location="${src.dir}"/>
                 <pathelement path="${jaxbwiz.xjcrun.classpath}"/>
             </classpath>
             <arg value="-xmlschema"/>
-            <schema file="xml-resources/jaxb/Basic Tiles/basic-tiles.xsd"/>
-            <depends file="xml-resources/jaxb/Basic Tiles/basic-tiles.xsd"/>
-            <produces dir="build/generated/jaxbCache/Basic Tiles"/>
+            <schema file="src/main/xml/basic-tiles.xsd"/>
+            <depends file="src/main/xml/basic-tiles.xsd"/>
+            <produces dir="build/generated/jaxbCache/basic"/>
         </xjc>
         <copy todir="${build.generated.sources.dir}/jaxb">
-            <fileset dir="build/generated/jaxbCache/Basic Tiles"/>
+            <fileset dir="build/generated/jaxbCache/basic"/>
         </copy>
-        <mkdir dir="build/generated/jaxbCache/Inns &amp; Cathedrals Tiles"/>
-        <xjc destdir="build/generated/jaxbCache/Inns &amp; Cathedrals Tiles" catalog="catalog.xml">
+        <mkdir dir="build/generated/jaxbCache/inns-cathedrals"/>
+        <xjc destdir="build/generated/jaxbCache/inns-cathedrals" catalog="catalog.xml">
             <classpath>
                 <pathelement location="${src.dir}"/>
                 <pathelement path="${jaxbwiz.xjcrun.classpath}"/>
             </classpath>
             <arg value="-xmlschema"/>
-            <schema file="xml-resources/jaxb/Inns &amp; Cathedrals Tiles/inns-cathedrals-tiles.xsd"/>
-            <depends file="xml-resources/jaxb/Inns &amp; Cathedrals Tiles/inns-cathedrals-tiles.xsd"/>
-            <produces dir="build/generated/jaxbCache/Inns &amp; Cathedrals Tiles"/>
+            <schema file="src/main/xml/expansions/inns-cathedrals-tiles.xsd"/>
+            <depends file="src/main/xml/expansions/inns-cathedrals-tiles.xsd"/>
+            <produces dir="build/generated/jaxbCache/inns-cathedrals"/>
         </xjc>
         <copy todir="${build.generated.sources.dir}/jaxb">
-            <fileset dir="build/generated/jaxbCache/Inns &amp; Cathedrals Tiles"/>
+            <fileset dir="build/generated/jaxbCache/inns-cathedrals"/>
         </copy>
     </target>
 </project>
