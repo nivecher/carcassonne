@@ -4,24 +4,13 @@
  */
 package carcassonne.tiles.features;
 
-import carcassonne.followers.Follower;
-import carcassonne.followers.Role;
-
 /**
  *
  * @author Morgan
  */
-public interface IFeature {
-    
-    void addFollower(Follower follower);
-    
-    void removeFollower(Follower follower);
-
-    Role getFollowerRole();
+public interface IFeature extends IFollowerPlaceable {
     
     int getPoints();
-    
-    boolean hasFollowers();
     
     boolean isComplete();
 }

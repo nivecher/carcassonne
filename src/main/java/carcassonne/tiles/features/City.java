@@ -11,8 +11,6 @@ import carcassonne.followers.Role;
  * @author Morgan
  */
 public class City extends AbsSegmentedFeature<City> {
-
-    public static final int POINTS_PER_PENNANT = 2; // TODO verify
     
     /**
      * Number of penants

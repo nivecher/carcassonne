@@ -6,7 +6,7 @@ package carcassonne.board;
 
 import carcassonne.followers.Follower;
 import carcassonne.tiles.ITile;
-import carcassonne.tiles.ITile.Edge;
+import carcassonne.tiles.ITile.TileEdge;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +23,7 @@ public class TilePlacement implements ITile {
     public ITile getBaseTile() {
         return baseTile;
     }
-    private final Map<Edge, ITile> edgeMap = new HashMap<>();
+    private final Map<TileEdge, ITile> edgeMap = new HashMap<>();
     
     public TilePlacement (ITile baseTile) {
         this.baseTile = baseTile;
@@ -37,7 +37,7 @@ public class TilePlacement implements ITile {
      * @param tile
      * @param edge 
      */
-    public void addTile(ITile tile, Edge edge) {
+    public void addTile(ITile tile, TileEdge edge) {
         if (edgeMap.containsKey(edge)) {
             throw new IllegalStateException(edge + " edge occupied! - " + 
                     edgeMap.get(edge));
@@ -50,7 +50,7 @@ public class TilePlacement implements ITile {
      * @param edge
      * @return 
      */
-    public ITile getTile(Edge edge) {
+    public ITile getTile(TileEdge edge) {
         return edgeMap.get(edge);
     }
     
@@ -67,13 +67,13 @@ public class TilePlacement implements ITile {
     public ITile getTile(Direction direction) {
         switch (direction) {
             case N:
-                return getTile(Edge.Top);
+                return getTile(TileEdge.Top);
             case E:
-                return getTile(Edge.Right);
+                return getTile(TileEdge.Right);
             case S:
-                return getTile(Edge.Bottom);
+                return getTile(TileEdge.Bottom);
             case W:
-                return getTile(Edge.Left);
+                return getTile(TileEdge.Left);
             default:
                 throw new IllegalArgumentException("Invalid direction: " +
                         direction);

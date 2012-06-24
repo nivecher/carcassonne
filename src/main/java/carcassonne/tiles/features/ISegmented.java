@@ -4,9 +4,6 @@
  */
 package carcassonne.tiles.features;
 
-import carcassonne.tiles.AbsTile;
-import java.util.List;
-
 /**
  *
  * @param <F> type of feature segments contained
@@ -23,7 +20,7 @@ public interface ISegmented<F extends IFeature> {
 
     /**
      * Returns the list of tiles that contain the segments of the feature
-     *
+     * TODO ?
      * @param segment feature segment to add
      */
     void addSegment(ISegment<F> segment);

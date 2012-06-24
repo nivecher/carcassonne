@@ -9,6 +9,7 @@ import carcassonne.followers.Follower;
 import java.util.List;
 
 import static carcassonne.tiles.ITile.Direction.*;
+import carcassonne.tiles.features.IFeature;
 import java.util.Arrays;
 import java.util.EnumSet;
 
@@ -58,7 +59,7 @@ public interface ITile {
         }
     }
 
-    public enum Edge {
+    public enum TileEdge {
         Center(EnumSet.of(E, C, W)),
         Top(EnumSet.of(NW, N, NE)), 
         Bottom(EnumSet.of(SW, S, SE)), 
@@ -67,7 +68,7 @@ public interface ITile {
         
         private final EnumSet<Direction> directions;
         
-        Edge(EnumSet<Direction> directions) {
+        TileEdge(EnumSet<Direction> directions) {
             this.directions = directions;
         }
         
@@ -80,5 +81,7 @@ public interface ITile {
     List<Follower> getFollowers();
 
     String getId();
+	
+	List<IFeature> getFeatures();
     
 }
