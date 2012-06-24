@@ -4,9 +4,9 @@
  */
 package carcassonne.board;
 
+import carcassonne.basic.tiles.Edge;
 import carcassonne.followers.Follower;
 import carcassonne.tiles.ITile;
-import carcassonne.tiles.ITile.TileEdge;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,15 +18,15 @@ import java.util.Objects;
  */
 public class TilePlacement implements ITile {
     
-    private final ITile baseTile;
+    private final ITile tile;
 
     public ITile getBaseTile() {
-        return baseTile;
+        return tile;
     }
-    private final Map<TileEdge, ITile> edgeMap = new HashMap<>();
+    private final Map<Edge, ITile> edgeMap = new HashMap<>();
     
-    public TilePlacement (ITile baseTile) {
-        this.baseTile = baseTile;
+    public TilePlacement (ITile tile) {
+        this.tile = tile;
         // TODO add "self"?
 //        this.tileMap.put(Edge.Unspecified, centerTile);
     }
@@ -37,7 +37,7 @@ public class TilePlacement implements ITile {
      * @param tile
      * @param edge 
      */
-    public void addTile(ITile tile, TileEdge edge) {
+    public void addTile(ITile tile, Edge edge) {
         if (edgeMap.containsKey(edge)) {
             throw new IllegalStateException(edge + " edge occupied! - " + 
                     edgeMap.get(edge));
@@ -50,44 +50,18 @@ public class TilePlacement implements ITile {
      * @param edge
      * @return 
      */
-    public ITile getTile(TileEdge edge) {
+    public ITile getTile(Edge edge) {
         return edgeMap.get(edge);
     }
     
-    /**
-     * TODO can NW, NE, SW, SE be figured out?  See "o" below:
-     * 
-     *   x x x x
-     *   x o   x
-     *       o x
-     * 
-     * @param direction
-     * @return 
-     */
-    public ITile getTile(Direction direction) {
-        switch (direction) {
-            case N:
-                return getTile(TileEdge.Top);
-            case E:
-                return getTile(TileEdge.Right);
-            case S:
-                return getTile(TileEdge.Bottom);
-            case W:
-                return getTile(TileEdge.Left);
-            default:
-                throw new IllegalArgumentException("Invalid direction: " +
-                        direction);
-        }
-    }
-
     @Override
     public List<Follower> getFollowers() {
-        return baseTile.getFollowers();
+        return tile.getFollowers();
     }
 
     @Override
     public String getId() {
-        return baseTile.getId();
+        return tile.getId();
     }
 
     @Override
@@ -99,7 +73,7 @@ public class TilePlacement implements ITile {
             return false;
         }
         final TilePlacement other = (TilePlacement) obj;
-        if (!Objects.equals(this.baseTile, other.baseTile)) {
+        if (!Objects.equals(this.tile, other.tile)) {
             return false;
         }
         return true;

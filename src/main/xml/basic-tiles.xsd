@@ -127,8 +127,8 @@ and open the template in the editor.
             <xs:element ref="basic:feature" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
         <xs:attribute name="id" type="xs:ID" use="required"/>
-        <xs:attribute name="instances" type="xs:positiveInteger" use="required"/>
-        <xs:attribute name="tag" type="xs:string"/>
+        <xs:attribute name="instances" type="xs:int" use="required"/>
+        <xs:attribute name="description" type="xs:string"/>
     </xs:complexType>
     
     <xs:element name="feature" type="basic:feature" abstract="true"/>

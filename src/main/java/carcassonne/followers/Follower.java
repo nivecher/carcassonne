@@ -4,7 +4,7 @@
  */
 package carcassonne.followers;
 
-import carcassonne.tiles.features.IFeature;
+import carcassonne.features.IFeature;
 import carcassonne.followers.Role;
 
 /**

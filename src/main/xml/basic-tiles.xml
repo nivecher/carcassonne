@@ -34,7 +34,7 @@
             <ns1:pennant/>
         </ns1:city>
     </ns1:tile>
-    <ns1:tile id="D" instances="4" tag="Starting tile">
+    <ns1:tile id="D" instances="4" description="Starting tile">
         <ns1:city>
             <ns1:edge>east</ns1:edge>
         </ns1:city>

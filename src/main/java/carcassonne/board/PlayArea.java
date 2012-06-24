@@ -14,7 +14,7 @@ import java.util.Map;
  *
  * @author Morgan
  */
-public class PlayArea {
+public class PlayArea implements IPlayArea {
     
     private final Map<ITile, TilePlacement> placementMap = new HashMap<>();
     private final Map<Position, TilePlacement> positionMap = new HashMap<>();
@@ -23,6 +23,7 @@ public class PlayArea {
         placeTile(baseTile, Position.BASE);
     }
     
+    @Override
     public final ITile placeTile(ITile tile, Position loc) {
         if (positionMap.containsKey(loc)) {
             throw new IllegalArgumentException("Position " + loc +
@@ -35,6 +36,7 @@ public class PlayArea {
         return placement;
     }
     
+    @Override
     public final ITile getTile(Position loc) {
         TilePlacement placement = positionMap.get(loc);
         if (placement != null) {
@@ -43,6 +45,7 @@ public class PlayArea {
         return positionMap.get(loc);
     }
     
+    @Override
     public final TilePlacement getPlacement(ITile tile) {
         return placementMap.get(tile);
     }
@@ -52,6 +55,7 @@ public class PlayArea {
      * @param f follower to find
      * @return tile found or null if follower not found
      */
+    @Override
     public ITile findTile(Follower f) {
         for (ITile t : positionMap.values()) {
             if (t.getFollowers().contains(f)) {
