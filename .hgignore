@@ -1,0 +1,4 @@
+syntax: glob
+nbproject/private
+build
+dist

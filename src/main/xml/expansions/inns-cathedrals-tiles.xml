@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<basic:tileSet
+    xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+    xmlns:basic='urn:carcassonne:basic:tiles'
+    xmlns:ic='urn:carcassonne:inns-cathedrals:tiles'
+    xsi:schemaLocation='urn:carcassonne:basic:tiles ../basic-tiles.xsd
+   urn:carcassonne:inns-cathedrals:tiles inns-cathedrals-tiles.xsd'>
+       
+    <basic:tile id="EA" instances="1">
+        <basic:field>
+            <basic:description>Field containing the inn</basic:description>
+            <basic:edge>north</basic:edge>
+            <basic:edge>east</basic:edge>
+            <basic:edgeSegment>south-east</basic:edgeSegment>
+            <basic:edgeSegment>west-north</basic:edgeSegment>
+        </basic:field>
+        <basic:field>
+            <basic:description>Field in southwest quadrant</basic:description>
+            <basic:edgeSegment>west-south</basic:edgeSegment>
+            <basic:edgeSegment>south-west</basic:edgeSegment>
+        </basic:field>
+        <ic:road>
+            <basic:description>Road leading to the inn</basic:description>
+            <basic:edge>south</basic:edge>
+            <basic:edge>west</basic:edge>
+            <ic:inn/>
+        </ic:road>
+    </basic:tile>
+    
+    <basic:tile id="EB" instances="1">
+        <basic:field>
+            <basic:description>Field containing the inn</basic:description>
+            <basic:edge>east</basic:edge>
+            <basic:edgeSegment>north-east</basic:edgeSegment>
+            <basic:edgeSegment>south-east</basic:edgeSegment>
+        </basic:field>
+        <basic:field>
+            <basic:edge>west</basic:edge>
+            <basic:edgeSegment>north-west</basic:edgeSegment>
+            <basic:edgeSegment>south-west</basic:edgeSegment>
+        </basic:field>
+        <ic:road>
+            <basic:edge>north</basic:edge>
+            <basic:edge>south</basic:edge>
+            <ic:inn/>
+        </ic:road>
+    </basic:tile>
+    <basic:tile id="EC" instances="1">
+        <basic:field>
+            <basic:description>Field containing the inn</basic:description>
+            <basic:edge>north</basic:edge>
+            <basic:edgeSegment>west-north</basic:edgeSegment>
+            <basic:edgeSegment>east-north</basic:edgeSegment>
+        </basic:field>
+        <basic:field>
+            <basic:edgeSegment>east-south</basic:edgeSegment>
+            <basic:edgeSegment>south-east</basic:edgeSegment>
+        </basic:field>
+        <basic:field>
+            <basic:edgeSegment>west-south</basic:edgeSegment>
+            <basic:edgeSegment>south-west</basic:edgeSegment>
+        </basic:field>
+        <ic:road>
+            <basic:description>
+                Road from the crossing in the center to the east edge
+            </basic:description>
+            <basic:edge>east</basic:edge>
+            <ic:inn/>
+        </ic:road>
+        <basic:road>
+            <basic:description>
+                Road from the crossing in the center to the south edge
+            </basic:description>
+            <basic:edge>south</basic:edge>
+        </basic:road>
+        <basic:road>
+            <basic:description>
+                Road from the crossing in the center to the west edge
+            </basic:description>
+            <basic:edge>west</basic:edge>
+        </basic:road>
+    </basic:tile>
+    <basic:tile id="ED" instances="1">
+        <basic:cloister/>
+        <basic:field>
+            <basic:edge>north</basic:edge>
+            <basic:edgeSegment>east-north</basic:edgeSegment>
+            <basic:edgeSegment>west-north</basic:edgeSegment>
+        </basic:field>
+        <basic:field>
+            <basic:edge>south</basic:edge>
+            <basic:edgeSegment>east-south</basic:edgeSegment>
+            <basic:edgeSegment>west-south</basic:edgeSegment>
+        </basic:field>
+        <basic:road>
+            <basic:description>
+                Road from cloister to east edge
+            </basic:description>
+            <basic:edge>east</basic:edge>
+        </basic:road>
+        <basic:road>
+            <basic:description>
+                Road from cloister to west edge
+            </basic:description>
+            <basic:edge>west</basic:edge>
+        </basic:road>
+    </basic:tile>
+    <basic:tile id="EE" instances="1">
+        <basic:field>
+            <basic:edgeSegment>north-east</basic:edgeSegment>
+            <basic:edgeSegment>east-north</basic:edgeSegment>
+            <basic:edgeSegment>south-west</basic:edgeSegment>
+            <basic:edgeSegment>west-south</basic:edgeSegment>
+        </basic:field>
+        <basic:field>
+            <basic:edgeSegment>east-south</basic:edgeSegment>
+            <basic:edgeSegment>south-east</basic:edgeSegment>
+        </basic:field>
+        <basic:field>
+            <basic:edgeSegment>north-west</basic:edgeSegment>
+            <basic:edgeSegment>west-north</basic:edgeSegment>
+        </basic:field>
+        <basic:road>
+            <basic:edge>north</basic:edge>
+            <basic:edge>west</basic:edge>
+        </basic:road>
+        <basic:road>
+            <basic:edge>east</basic:edge>
+            <basic:edge>south</basic:edge>
+        </basic:road>
+    </basic:tile>
+    <basic:tile id="EF" instances="1">
+        <basic:city>
+            <basic:edge>north</basic:edge>
+            <basic:edge>east</basic:edge>
+        </basic:city>
+        <basic:field>
+            <basic:edgeSegment>south-east</basic:edgeSegment>
+        </basic:field>
+        <basic:field>
+            <basic:edge>west</basic:edge>
+            <basic:edgeSegment>south-west</basic:edgeSegment>
+        </basic:field>
+        <basic:road>
+            <basic:description>
+                Road from city to south edge
+            </basic:description>
+            <basic:edge>south</basic:edge>
+        </basic:road>
+    </basic:tile>
+    <basic:tile id="EG" instances="1">
+        <basic:city>
+            <basic:edge>west</basic:edge>
+        </basic:city>
+        <basic:field>
+            <basic:description>Field north of the city</basic:description>
+            <basic:edge>north</basic:edge>
+        </basic:field>
+        <basic:field>
+            <basic:description>Field south and east of the city</basic:description>
+            <basic:edge>east</basic:edge>
+            <basic:edge>south</basic:edge>
+        </basic:field>
+    </basic:tile>
+    <basic:tile id="EH" instances="1">
+        <basic:city>
+            <basic:edge>north</basic:edge>
+        </basic:city>
+        <basic:city>
+            <basic:edge>east</basic:edge>
+        </basic:city>
+        <basic:city>
+            <basic:edge>south</basic:edge>
+        </basic:city>
+        <basic:city>
+            <basic:edge>west</basic:edge>
+        </basic:city>
+        <basic:field>
+            <basic:description>Field surrounded by cities</basic:description>
+        </basic:field>
+    </basic:tile>
+    
+<!--    TODO add EI-EJ-->
+    <basic:tile id="EK" instances="2">
+        <ic:cathedral/>
+    </basic:tile>
+<!--    TODO add EL-EQ-->
+
+</basic:tileSet>
