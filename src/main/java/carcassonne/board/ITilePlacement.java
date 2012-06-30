@@ -7,7 +7,6 @@ package carcassonne.board;
 import carcassonne.basic.tiles.Edge;
 import carcassonne.followers.Follower;
 import carcassonne.tiles.ITile;
-import java.util.List;
 
 /**
  *
@@ -20,10 +19,11 @@ public interface ITilePlacement {
      * direction
      * @param tile
      * @param edge
+     * @return new tile placement 
      */
-    void addTile(ITile tile, Edge edge);
+    ITilePlacement addTile(ITile tile, Edge edge);
 
-    ITile getBaseTile();
+    ITile getTile();
 
     Follower getDeployedFollower();
 
@@ -32,6 +32,6 @@ public interface ITilePlacement {
      * @param edge
      * @return
      */
-    ITile getTile(Edge edge);
+    ITilePlacement getTile(Edge edge);
     
 }

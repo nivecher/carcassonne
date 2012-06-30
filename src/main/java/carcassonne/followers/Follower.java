@@ -4,8 +4,7 @@
  */
 package carcassonne.followers;
 
-import carcassonne.features.IFeature;
-import carcassonne.followers.Role;
+import carcassonne.features.IFollowerDeployable;
 
 /**
  * Playing piece that is placed on features within tiles
@@ -49,12 +48,13 @@ public class Follower {
         return role;
     }
     
-    public void deploy(IFeature feature) {
+    public void deploy(IFollowerDeployable feature) {
         
         if (this.role != null) {
             throw new IllegalStateException("Follower already deployed as role: " +
                     this.role);
         }
+        feature.addFollower(this);
         this.role = feature.getFollowerRole();
     }
 }

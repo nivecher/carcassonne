@@ -13,13 +13,6 @@ import carcassonne.followers.Role;
  */
 public class City extends AbsSegmentedFeature<CitySegment> {
     
-    /**
-     * Number of penants
-     */
-    private int pennants;
-    
-    // TODO walls
-    
     public City() {
         super(Role.Knight);
     }

@@ -16,14 +16,5 @@ public class Road extends AbsSegmentedFeature<RoadSegment> {
     public Road() {
         super(Role.Thieve);
     }
-
-    /**
-     * A road is complete once both ends hit another item/feature on a tile.
-     * @return true if complete, false otherwise
-     */
-    @Override
-    public boolean isComplete() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
     
 }

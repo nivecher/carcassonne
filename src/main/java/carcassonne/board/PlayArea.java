@@ -15,37 +15,34 @@ import java.util.Map;
  */
 public class PlayArea implements IPlayArea {
     
-    private final Map<ITile, TilePlacement> placementMap = new HashMap<>();
-    private final Map<Position, TilePlacement> positionMap = new HashMap<>();
+    private final Map<ITile, ITilePlacement> placementMap = new HashMap<>();
+    private final Map<Position, ITilePlacement> positionMap = new HashMap<>();
     
-    public PlayArea(ITile baseTile) {
-        placeTile(baseTile, Position.BASE);
+    @Override
+    public ITilePlacement setStartTile(ITile startTile) {
+        return placeTile(startTile, Position.BASE);
     }
     
     @Override
-    public final ITile placeTile(ITile tile, Position loc) {
+    public final ITilePlacement placeTile(ITile tile, Position loc) {
         if (positionMap.containsKey(loc)) {
             throw new IllegalArgumentException("Position " + loc +
                     " already occupied by " + positionMap.get(loc));
         }
         
-        TilePlacement placement = new TilePlacement(tile);
+        ITilePlacement placement = new TilePlacement(tile);
         placementMap.put(tile, placement);
         positionMap.put(loc, placement);
         return placement;
     }
     
     @Override
-    public final ITile getTile(Position loc) {
-        TilePlacement placement = positionMap.get(loc);
-        if (placement != null) {
-            return placement.getBaseTile();
-        }
+    public final ITilePlacement getTile(Position loc) {
         return positionMap.get(loc);
     }
     
     @Override
-    public final TilePlacement getPlacement(ITile tile) {
+    public final ITilePlacement getPlacement(ITile tile) {
         return placementMap.get(tile);
     }
     
@@ -55,8 +52,8 @@ public class PlayArea implements IPlayArea {
      * @return tile found or null if follower not found
      */
     @Override
-    public ITile findTile(Follower f) {
-        for (TilePlacement t : positionMap.values()) {
+    public ITilePlacement findTile(Follower f) {
+        for (ITilePlacement t : positionMap.values()) {
             if (f.equals(t.getDeployedFollower())) {
                 return t;
             }

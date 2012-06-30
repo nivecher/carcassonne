@@ -18,12 +18,13 @@ public interface IPlayArea {
      * @param f follower to find
      * @return tile found or null if follower not found
      */
-    ITile findTile(Follower f);
+    ITilePlacement findTile(Follower f);
 
-    TilePlacement getPlacement(ITile tile);
+    ITilePlacement getPlacement(ITile tile);
 
-    ITile getTile(Position loc);
+    ITilePlacement getTile(Position loc);
 
-    ITile placeTile(ITile tile, Position loc);
-    
+    ITilePlacement placeTile(ITile tile, Position loc);
+
+    ITilePlacement setStartTile(ITile startTile);
 }

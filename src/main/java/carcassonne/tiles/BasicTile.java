@@ -47,25 +47,24 @@ public class BasicTile implements ITile {
         return id;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final BasicTile other = (BasicTile) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
-    }
+//    @Override
+//    public boolean equals(Object obj) {
+//        if (obj == null) {
+//            return false;
+//        }
+//        if (getClass() != obj.getClass()) {
+//            return false;
+//        }
+//        final BasicTile other = (BasicTile) obj;
+//        if (!Objects.equals(this.id, other.id)) {
+//            return false;
+//        }
+//        return true;
+//    }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        return hash;
+        return id.hashCode();
     }
 
     @Override
@@ -78,5 +77,10 @@ public class BasicTile implements ITile {
         if (f instanceof IFeatureSegment) {
             mapSegment((IFeatureSegment) f);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "BasicTile{" + "id=" + id + '}';
     }
 }
