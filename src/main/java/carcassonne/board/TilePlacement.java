@@ -19,10 +19,10 @@ public class TilePlacement implements ITile, ITilePlacement {
     private final ITile tile;
 
     @Override
-    public ITile getBaseTile() {
+    public ITile getTile() {
         return tile;
     }
-    private final Map<Edge, ITile> edgeMap = new HashMap<>();
+    private final Map<Edge, ITilePlacement> edgeMap = new HashMap<>();
     
     /**
      * Deployed follower
@@ -31,8 +31,6 @@ public class TilePlacement implements ITile, ITilePlacement {
     
     public TilePlacement (ITile tile) {
         this.tile = tile;
-        // TODO add "self"?
-//        this.tileMap.put(Edge.Unspecified, centerTile);
     }
     
     /**
@@ -42,12 +40,14 @@ public class TilePlacement implements ITile, ITilePlacement {
      * @param edge 
      */
     @Override
-    public void addTile(ITile tile, Edge edge) {
+    public ITilePlacement addTile(ITile tile, Edge edge) {
         if (edgeMap.containsKey(edge)) {
-            throw new IllegalStateException(edge + " edge occupied! - " + 
-                    edgeMap.get(edge));
+            throw new IllegalStateException(edge + " edge of tile '" + getId() + 
+                    "' occupied! - " + edgeMap.get(edge));
         }
-        edgeMap.put(edge, tile);
+        ITilePlacement placement = new TilePlacement(tile);
+        edgeMap.put(edge, placement);
+        return placement;
     }
     
     /**
@@ -56,7 +56,7 @@ public class TilePlacement implements ITile, ITilePlacement {
      * @return 
      */
     @Override
-    public ITile getTile(Edge edge) {
+    public ITilePlacement getTile(Edge edge) {
         return edgeMap.get(edge);
     }
     
@@ -95,6 +95,10 @@ public class TilePlacement implements ITile, ITilePlacement {
     public List<IFeature> getFeatures() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
+    @Override
+    public String toString() {
+        return "TilePlacement{" + "tile=" + tile + '}';
+    }
     
 }

@@ -6,7 +6,6 @@ package carcassonne.followers;
 
 /**
  * Default roles
- * TODO change from being an enumeration to support expansions?
  * @author Morgan
  */
 public enum Role {
