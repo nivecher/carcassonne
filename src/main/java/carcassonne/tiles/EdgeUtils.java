@@ -64,4 +64,19 @@ public class EdgeUtils {
             }
         }
     }
+    
+    public Edge getOpposite(Edge e) {
+        switch (e) {
+            case NORTH:
+                return SOUTH;
+            case EAST:
+                return WEST;
+            case SOUTH:
+                return NORTH;
+            case WEST:
+                return EAST;
+            default:
+                throw new IllegalArgumentException("Invalid edge: " + e);
+        }
+    }
 }

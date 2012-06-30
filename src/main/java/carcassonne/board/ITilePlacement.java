@@ -33,5 +33,6 @@ public interface ITilePlacement {
      * @return
      */
     ITilePlacement getTile(Edge edge);
-    
+ 
+    boolean canAddTile(ITile tile, Edge edge);
 }
