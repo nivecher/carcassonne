@@ -16,9 +16,10 @@ import java.util.*;
  * Decorator around a tile that gives it a placement relative to other tiles.
  * @author Morgan
  */
-public class TilePlacement implements ITile, ITilePlacement {
+public class TilePlacement implements ITilePlacement {
     
     private final ITile tile;
+    private final Position position;
 
     @Override
     public ITile getTile() {
@@ -29,13 +30,19 @@ public class TilePlacement implements ITile, ITilePlacement {
     private final EdgeUtils edgeUtils = new EdgeUtils(); // TODO inject
     
     /**
+     * Construct a new tile placement
+     * @param tile 
+     * @param position
+     */
+    public TilePlacement (ITile tile, Position position) {
+        this.tile = tile;
+        this.position = position;
+    }
+    
+    /**
      * Deployed follower
      */
     private Follower deployedFollower;
-    
-    public TilePlacement (ITile tile) {
-        this.tile = tile;
-    }
     
     /**
      * Adds a tile next to the current tile position based on the specified
@@ -49,7 +56,8 @@ public class TilePlacement implements ITile, ITilePlacement {
             throw new IllegalStateException(edge + " edge of tile '" + getId() + 
                     "' occupied! - " + edgeMap.get(edge));
         }
-        ITilePlacement placement = new TilePlacement(newTile);
+        Position newPos = edgeUtils.relativePosition(position, edge);
+        ITilePlacement placement = new TilePlacement(newTile, newPos);
         edgeMap.put(edge, placement);
         return placement;
     }
@@ -77,7 +85,7 @@ public class TilePlacement implements ITile, ITilePlacement {
      * @return 
      */
     @Override
-    public ITilePlacement getTile(Edge edge) {
+    public ITilePlacement getAdjacentTile(Edge edge) {
         return edgeMap.get(edge);
     }
     
@@ -106,6 +114,11 @@ public class TilePlacement implements ITile, ITilePlacement {
         return true;
     }
 
+    @Override
+    public Position getPosition() {
+        return position;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;

@@ -4,7 +4,6 @@
  */
 package carcassonne.board;
 
-import carcassonne.followers.Follower;
 import carcassonne.tiles.ITile;
 
 /**
@@ -13,16 +12,9 @@ import carcassonne.tiles.ITile;
  */
 public interface IPlayArea {
 
-    /**
-     * Finds the tile containing a certain follower
-     * @param f follower to find
-     * @return tile found or null if follower not found
-     */
-    ITilePlacement findTile(Follower f);
+    ITilePlacement findTile(ITile tile);
 
-    ITilePlacement getPlacement(ITile tile);
-
-    ITilePlacement getTile(Position loc);
+    ITilePlacement getPlacement(Position loc);
 
     ITilePlacement placeTile(ITile tile, Position loc);
 

@@ -12,7 +12,7 @@ import carcassonne.tiles.ITile;
  *
  * @author Morgan
  */
-public interface ITilePlacement {
+public interface ITilePlacement extends ITile {
 
     /**
      * Adds a tile next to the current tile position based on the specified
@@ -32,7 +32,9 @@ public interface ITilePlacement {
      * @param edge
      * @return
      */
-    ITilePlacement getTile(Edge edge);
+    ITilePlacement getAdjacentTile(Edge edge);
  
     boolean canAddTile(ITile tile, Edge edge);
+    
+    Position getPosition();
 }

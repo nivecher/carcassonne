@@ -8,6 +8,7 @@ import carcassonne.basic.tiles.Edge;
 import static carcassonne.basic.tiles.Edge.*;
 import carcassonne.basic.tiles.EdgeSegment;
 import static carcassonne.basic.tiles.EdgeSegment.*;
+import carcassonne.board.Position;
 import carcassonne.features.IFeature;
 import carcassonne.features.IFeatureSegment;
 import java.util.EnumMap;
@@ -78,5 +79,27 @@ public class EdgeUtils {
             default:
                 throw new IllegalArgumentException("Invalid edge: " + e);
         }
+    }
+    
+    public static Position relativePosition(Position pos, Edge edge) {
+        int deltax = 0;
+        int deltay = 0;
+        
+        switch (edge) {
+            case NORTH:
+                deltay = 1;
+                break;
+            case EAST:
+                deltax = 1;
+                break;
+            case SOUTH:
+                deltay = -1;
+                break;
+            case WEST:
+                deltax = -1;
+                break;
+        }
+        
+        return new Position(pos.getX() + deltax, pos.getY() + deltay);
     }
 }
