@@ -41,7 +41,7 @@ and open the template in the editor.
         <xs:complexContent>
             <xs:extension base="basic:road">
                 <xs:sequence>
-                    <xs:element name="inn" type="ic:inn" minOccurs="0" maxOccurs="unbounded"/>
+                    <xs:element name="inn" type="ic:inn" minOccurs="0"/>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>

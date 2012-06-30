@@ -17,4 +17,5 @@ public interface ITile {
     String getId();
     
     List<IFeature> getFeatures();
+    
 }

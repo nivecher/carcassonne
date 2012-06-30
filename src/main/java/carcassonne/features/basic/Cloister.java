@@ -2,27 +2,29 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package carcassonne.features;
+package carcassonne.features.basic;
 
+import carcassonne.board.ITilePlacement;
+import carcassonne.features.AbsDeployableFeature;
 import carcassonne.followers.Role;
 
 /**
  *
  * @author Morgan
  */
-public class Road extends AbsSegmentedFeature {
-
-    public Road() {
-        super(Role.Thieve);
+public class Cloister extends AbsDeployableFeature {
+    
+    public Cloister() {
+        super(Role.Monk);
     }
 
     /**
-     * A road is complete once both ends hit another item/feature on a tile.
+     * Returns whether the cloister is completely surrounded by tiles
      * @return true if complete, false otherwise
      */
     @Override
     public boolean isComplete() {
+        // TODO determine if tile is surrounded
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
 }

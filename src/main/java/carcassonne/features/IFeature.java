@@ -8,7 +8,7 @@ package carcassonne.features;
  *
  * @author Morgan
  */
-public interface IFeature extends IFollowerPlaceable {
+public interface IFeature extends IFollowerDeployable {
     
     int getPoints();
     

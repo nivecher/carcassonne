@@ -4,14 +4,13 @@
  */
 package carcassonne;
 
-import carcassonne.basic.tiles.Feature;
 import carcassonne.basic.tiles.Tile;
 import carcassonne.basic.tiles.TileSet;
 import carcassonne.tiles.BasicTileBuilder;
-import java.util.List;
+import carcassonne.tiles.EdgeUtils;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.xml.bind.JAXBElement;
+import javax.xml.bind.JAXBContext;
 
 /**
  *
@@ -23,11 +22,13 @@ public class Carcassonne {
     private static final String BASIC_TILES_XML = "/basic-tiles.xml";
     private static final String INNS_CATHEDRALS_XML = "/expansions/inns-cathedrals-tiles.xml";
 
+    private final EdgeUtils edgeUtils;
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Carcassonne carcassonne = new Carcassonne();
+        Carcassonne carcassonne = new Carcassonne(new EdgeUtils());
         try {
             carcassonne.start();
         } catch (Exception ex) {
@@ -36,27 +37,42 @@ public class Carcassonne {
         }
     }
 
-    public void start() throws Exception {
-        BasicTileBuilder reader = new BasicTileBuilder();
+    
+    private Carcassonne(EdgeUtils edgeUtils) {
+        this.edgeUtils = edgeUtils;
+    }
 
-        TileSet basicSet = reader.loadTiles(BASIC_TILES_XML);
+    public void start() throws Exception {
+        BasicTileBuilder builder = new BasicTileBuilder();
+
+        TileSet basicSet = builder.loadTiles(BASIC_TILES_XML, 
+                JAXBContext.newInstance("carcassonne.basic.tiles"));
         LOGGER.log(Level.INFO, "Loading basic tiles");
+        int basicTiles = 0;
         for (Tile t : basicSet.getTile()) {
             LOGGER.log(Level.INFO, "Loading tile: {0}", t.getId());
-            List<JAXBElement<? extends Feature>> features = t.getFeature();
-            for (int i = 0; i < t.getFeature().size(); i++) {
-                Feature f = features.get(i).getValue();
-                f.getDescription();
+            for (int i = 0; i < t.getInstances(); i++) {
+                edgeUtils.validateEdges(builder.buildTile(t));
+                basicTiles++;
             }
         }
-
-        TileSet icSet = reader.loadTiles(INNS_CATHEDRALS_XML);
+        LOGGER.log(Level.INFO, "{0} basic tiles created", basicTiles);
+        
+        TileSet icSet = builder.loadTiles(INNS_CATHEDRALS_XML,
+                JAXBContext.newInstance("carcassonne.inns_cathedrals.tiles"));
         LOGGER.log(Level.INFO, "Loading Inns & Cathedrals tiles");
+        int icTiles = 0;
         for (Tile t : icSet.getTile()) {
             LOGGER.log(Level.INFO, "Loading tile: {0}", t.getId());
+            for (int i = 0; i < t.getInstances(); i++) {
+                edgeUtils.validateEdges(builder.buildTile(t));
+                icTiles++;
+            }
         }
+        LOGGER.log(Level.INFO, "{0} Inns & Cathedrals tiles created", 
+                icTiles);
 
-        // TODO add expansions
+        // TODO add more expansions
     }
 
     public void shutdown() {

@@ -5,25 +5,29 @@
 package carcassonne.board;
 
 import carcassonne.basic.tiles.Edge;
+import carcassonne.features.IFeature;
 import carcassonne.followers.Follower;
 import carcassonne.tiles.ITile;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * Decorator around a tile that gives it a placement relative to other tiles.
  * @author Morgan
  */
-public class TilePlacement implements ITile {
+public class TilePlacement implements ITile, ITilePlacement {
     
     private final ITile tile;
 
+    @Override
     public ITile getBaseTile() {
         return tile;
     }
     private final Map<Edge, ITile> edgeMap = new HashMap<>();
+    
+    /**
+     * Deployed follower
+     */
+    private Follower deployedFollower;
     
     public TilePlacement (ITile tile) {
         this.tile = tile;
@@ -37,6 +41,7 @@ public class TilePlacement implements ITile {
      * @param tile
      * @param edge 
      */
+    @Override
     public void addTile(ITile tile, Edge edge) {
         if (edgeMap.containsKey(edge)) {
             throw new IllegalStateException(edge + " edge occupied! - " + 
@@ -50,13 +55,14 @@ public class TilePlacement implements ITile {
      * @param edge
      * @return 
      */
+    @Override
     public ITile getTile(Edge edge) {
         return edgeMap.get(edge);
     }
     
     @Override
-    public List<Follower> getFollowers() {
-        return tile.getFollowers();
+    public Follower getDeployedFollower() {
+        return deployedFollower;
     }
 
     @Override
@@ -83,6 +89,11 @@ public class TilePlacement implements ITile {
     public int hashCode() {
         int hash = 7;
         return hash;
+    }
+
+    @Override
+    public List<IFeature> getFeatures() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
     

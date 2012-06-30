@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Morgan
  */
-public abstract class AbsFeature implements IFeature {
+public abstract class AbsDeployableFeature implements IFeature, IFollowerDeployable {
 
     protected final List<Follower> followers = new ArrayList<>();
     
@@ -22,7 +22,7 @@ public abstract class AbsFeature implements IFeature {
     private int points = 0;
 
     
-    public AbsFeature(Role followerRole) {
+    public AbsDeployableFeature(Role followerRole) {
         this.followerRole = followerRole;
     }
     
@@ -58,4 +58,5 @@ public abstract class AbsFeature implements IFeature {
     public int getNumFollowers() {
         return followers.size();
     }
+    
 }

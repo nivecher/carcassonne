@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-
 
 <basic:tileSet
     xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
@@ -185,11 +180,152 @@ and open the template in the editor.
             <basic:description>Field surrounded by cities</basic:description>
         </basic:field>
     </basic:tile>
-    
-<!--    TODO add EI-EJ-->
-    <basic:tile id="EK" instances="2">
-        <ic:cathedral/>
+    <basic:tile id="EI" instances="1">
+        <basic:city>
+            <basic:edge>east</basic:edge>
+        </basic:city>
+        <basic:city>
+            <basic:edge>west</basic:edge>
+        </basic:city>
+        <basic:field>
+            <basic:edge>north</basic:edge>
+            <basic:edge>south</basic:edge>
+        </basic:field>
     </basic:tile>
-<!--    TODO add EL-EQ-->
+    <basic:tile id="EJ" instances="1">
+        <basic:city>
+            <basic:edge>north</basic:edge>
+        </basic:city>
+        <basic:field>
+            <basic:edge>east</basic:edge>
+            <basic:edgeSegment>south-east</basic:edgeSegment>
+        </basic:field>
+        <basic:field>
+            <basic:edge>west</basic:edge>
+            <basic:edgeSegment>south-west</basic:edgeSegment>
+        </basic:field>
+        <basic:road>
+            <basic:edge>south</basic:edge>
+        </basic:road>
+    </basic:tile>
+    <basic:tile id="EK" instances="2">
+        <ic:cathedral>
+            <basic:edge>north</basic:edge>
+            <basic:edge>east</basic:edge>
+            <basic:edge>south</basic:edge>
+            <basic:edge>west</basic:edge>
+        </ic:cathedral>
+    </basic:tile>
+    <basic:tile id="EL" instances="1">
+        <basic:city>
+            <basic:edge>north</basic:edge>
+            <basic:edge>west</basic:edge>
+            <basic:pennant/>
+        </basic:city>
+        <basic:field>
+            <basic:edgeSegment>east-north</basic:edgeSegment>
+            <basic:edgeSegment>south-west</basic:edgeSegment>
+        </basic:field>
+        <basic:field>
+            <basic:edgeSegment>east-south</basic:edgeSegment>
+            <basic:edgeSegment>south-east</basic:edgeSegment>
+        </basic:field>
+        <ic:road>
+            <basic:edge>east</basic:edge>
+            <basic:edge>south</basic:edge>
+            <ic:inn/>
+        </ic:road>
+    </basic:tile>
+    <basic:tile id="EM" instances="1">
+        <basic:city>
+            <basic:edge>north</basic:edge>
+        </basic:city>
+        <basic:field>
+            <basic:edge>east</basic:edge>
+            <basic:edgeSegment>south-east</basic:edgeSegment>
+            <basic:edgeSegment>west-north</basic:edgeSegment>
+        </basic:field>
+        <basic:field>
+            <basic:edgeSegment>south-west</basic:edgeSegment>
+            <basic:edgeSegment>west-south</basic:edgeSegment>
+        </basic:field>
+        <ic:road>
+            <basic:edge>south</basic:edge>
+            <basic:edge>west</basic:edge>
+            <ic:inn/>
+        </ic:road>
+    </basic:tile>
+    <basic:tile id="EN" instances="1">
+        <basic:city>
+            <basic:edge>north</basic:edge>
+            <basic:edge>west</basic:edge>
+        </basic:city>
+        <basic:field>
+            <basic:edge>east</basic:edge>
+            <basic:edgeSegment>south-east</basic:edgeSegment>
+        </basic:field>
+        <basic:field>
+            <basic:edgeSegment>south-west</basic:edgeSegment>
+        </basic:field>
+        <ic:road>
+            <basic:description>
+                Road from city to south edge
+            </basic:description>
+            <basic:edge>south</basic:edge>
+            <ic:inn/>
+        </ic:road>
+    </basic:tile>
+    <basic:tile id="EO" instances="1">
+        <basic:city>
+            <basic:edge>north</basic:edge>
+        </basic:city>
+        <basic:city>
+            <basic:edge>east</basic:edge>
+        </basic:city>
+        <basic:city>
+            <basic:edge>west</basic:edge>
+        </basic:city>
+        <basic:field>
+            <basic:edge>south</basic:edge>
+        </basic:field>
+    </basic:tile>
+    <basic:tile id="EP" instances="1">
+        <basic:city>
+            <basic:edge>north</basic:edge>
+            <basic:edge>east</basic:edge>
+            <basic:pennant/>
+        </basic:city>
+        <basic:city>
+            <basic:edge>west</basic:edge>
+        </basic:city>
+        <basic:field>
+            <basic:edge>south</basic:edge>
+        </basic:field>
+    </basic:tile>
+    <basic:tile id="EQ" instances="1">
+        <basic:city>
+            <basic:edge>east</basic:edge>
+            <basic:edge>west</basic:edge>
+            <basic:pennant/>
+        </basic:city>
+        <basic:field>
+            <basic:edgeSegment>north-east</basic:edgeSegment>
+        </basic:field>
+        <basic:field>
+            <basic:edgeSegment>north-west</basic:edgeSegment>
+        </basic:field>
+        <basic:field>
+            <basic:edgeSegment>south-east</basic:edgeSegment>
+        </basic:field>
+        <basic:field>
+            <basic:edgeSegment>south-west</basic:edgeSegment>
+        </basic:field>
+        <basic:road>
+            <basic:edge>north</basic:edge>
+        </basic:road>
+        <basic:road>
+            <basic:edge>south</basic:edge>
+        </basic:road>
+    </basic:tile>
 
 </basic:tileSet>

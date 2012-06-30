@@ -5,11 +5,11 @@
 package carcassonne.features;
 
 /**
- *
- * @param <F> type of feature segments contained
+ * Segmented feature
+ * @param <S> segment type
  * @author Morgan
  */
-public interface ISegmented<F extends IFeature> {
+public interface ISegmented<S extends IFeatureSegment> {
 
     /**
      * Returns the number of tile segements
@@ -20,9 +20,8 @@ public interface ISegmented<F extends IFeature> {
 
     /**
      * Returns the list of tiles that contain the segments of the feature
-     * TODO ?
      * @param segment feature segment to add
      */
-    void addSegment(ISegment<F> segment);
+    void addSegment(S segment);
     
 }
