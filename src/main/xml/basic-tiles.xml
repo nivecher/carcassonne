@@ -9,8 +9,9 @@
         <ns1:field>
             <ns1:edge>north</ns1:edge>
             <ns1:edge>east</ns1:edge>
-            <ns1:edge>south</ns1:edge>
             <ns1:edge>west</ns1:edge>
+            <ns1:edgeSegment>south-east</ns1:edgeSegment>
+            <ns1:edgeSegment>south-west</ns1:edgeSegment>
         </ns1:field>
         <ns1:road>
             <ns1:edge>south</ns1:edge>

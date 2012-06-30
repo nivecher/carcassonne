@@ -11,14 +11,13 @@ import carcassonne.followers.Role;
  *
  * @author Morgan
  */
-public interface IFollowerPlaceable {
+public interface IFollowerDeployable {
 
-	void addFollower(Follower follower);
+    void addFollower(Follower follower);
 
-	Role getFollowerRole();
+    Role getFollowerRole();
 
-	boolean hasFollowers();
+    boolean hasFollowers();
 
-	void removeFollower(Follower follower);
-	
+    void removeFollower(Follower follower);
 }

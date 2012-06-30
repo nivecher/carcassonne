@@ -1,8 +1,5 @@
 package carcassonne.board;
 
-import java.util.Arrays;
-import java.util.EnumSet;
-
 /**
  * Region enumeration following the Cartesian coordinate system (x,y)
  * for adjacent relative positions:
@@ -100,22 +97,4 @@ public enum Region {
         }
     }
 
-    public enum TileEdge {
-        Center(EnumSet.of(E, C, W)),
-        Top(EnumSet.of(NW, N, NE)), 
-        Bottom(EnumSet.of(SW, S, SE)), 
-        Left (EnumSet.of(NW, W, SW)), 
-        Right (EnumSet.of(NE, E, SE));
-        
-        private final EnumSet<Direction> directions;
-        
-        TileEdge(EnumSet<Direction> directions) {
-            this.directions = directions;
-        }
-        
-        private boolean containsDirections(Direction... directions) {
-            return this.directions.containsAll(Arrays.asList(directions));
-        }
-        
-    }
 }

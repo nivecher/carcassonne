@@ -6,7 +6,6 @@ package carcassonne.board;
 
 import carcassonne.followers.Follower;
 import carcassonne.tiles.ITile;
-import carcassonne.tiles.ITile.Direction;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,16 +56,12 @@ public class PlayArea implements IPlayArea {
      */
     @Override
     public ITile findTile(Follower f) {
-        for (ITile t : positionMap.values()) {
-            if (t.getFollowers().contains(f)) {
+        for (TilePlacement t : positionMap.values()) {
+            if (f.equals(t.getDeployedFollower())) {
                 return t;
             }
         }
         return null; // not found
     }
-    
-    // TODO use this
-    private Position getRelativePosition(Position pos, Direction dir) {
-        return pos.getRelative(dir.relativePosition());
-    }
+
 }

@@ -5,19 +5,13 @@
 package carcassonne.tiles;
 
 import carcassonne.basic.tiles.Edge;
-import carcassonne.basic.tiles.Feature;
-import carcassonne.basic.tiles.Segment;
-import carcassonne.basic.tiles.Tile;
 import carcassonne.features.IFeature;
-import carcassonne.features.ISegment;
-import carcassonne.followers.Follower;
-import carcassonne.tiles.ITile;
+import carcassonne.features.IFeatureSegment;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import javax.xml.bind.JAXBElement;
 
 /**
  * Landscape tile
@@ -31,35 +25,21 @@ public class BasicTile implements ITile {
     /**
      * Map of segments by tile position
      */
-    private final Map<Edge, ISegment> segmentMap = new HashMap<>();
+    private final Map<Edge, IFeatureSegment> segmentMap = new HashMap<>();
     private final List<IFeature> features = new ArrayList<>();
-    private final List<javax.swing.text.Segment> segments = new ArrayList<>();
 
     BasicTile(String id) {
         this.id = id;
     }
 
-    private void mapSegment(Segment s) {
-        for (Edge e : s.getEdge()) {
-//			segmentMap.put(e, new FeatureSegment(s)); TODO
+    private void mapSegment(IFeatureSegment s) {
+        for (Edge e : s.getEdges()) {
+            segmentMap.put(e, s);
         }
     }
 
-    public List<ISegment> getSegments() {
+    public List<IFeatureSegment> getSegments() {
         return new ArrayList<>(segmentMap.values());
-    }
-
-    public void placeFollower(Follower f, ISegment seg) {
-        throw new UnsupportedOperationException("Not implemented");
-    }
-
-    // TODO move this
-    public List<Follower> getFollowers() {
-        List<Follower> followers = new ArrayList<>();
-        for (ISegment segment : segmentMap.values()) {
-            followers.add(segment.getFollower());
-        }
-        return followers; // TODO only one follower per tile?
     }
 
     @Override
@@ -93,7 +73,10 @@ public class BasicTile implements ITile {
         return new ArrayList<>(features);
     }
 
-    void addFeature(Feature f) {
-        throw new UnsupportedOperationException("Not yet implemented");
+    void addFeature(IFeature f) {
+        features.add(f);
+        if (f instanceof IFeatureSegment) {
+            mapSegment((IFeatureSegment) f);
+        }
     }
 }

@@ -11,13 +11,15 @@ import java.util.List;
 
 /**
  * Feature that is made up of multiple segments
- * @param <F> feature type
+ *
+ * @param <S> segment type
  * @author Morgan
  */
-public abstract class AbsSegmentedFeature<F extends IFeature> extends AbsFeature
-        implements IFollowerPlaceable, ISegmented<F> {
+public abstract class AbsSegmentedFeature<S extends IFeatureSegment>
+        extends AbsDeployableFeature
+        implements IFollowerDeployable, ISegmented<S> {
 
-    private final List<ISegment<F>> segments = new ArrayList<>();
+    private final List<S> segments = new ArrayList<>();
 
     public AbsSegmentedFeature(Role followerRole) {
         super(followerRole);
@@ -28,17 +30,18 @@ public abstract class AbsSegmentedFeature<F extends IFeature> extends AbsFeature
     }
 
     @Override
-    public void addSegment(ISegment<F> segment) {
+    public void addSegment(S segment) {
         segments.add(segment);
-        Follower newFollower = segment.getFollower();
-        if (newFollower != null) {
-            if (canAddFollower(newFollower)) {
-                addFollower(newFollower);
-            } else {
-                throw new RuntimeException("Cannot add follower "
-                        + newFollower + " to " + this.toString());
-            }
-        }
+        // TODO add followers
+//        Follower newFollower = segment.getFollower();
+//        if (newFollower != null) {
+//            if (canAddFollower(newFollower)) {
+//                addFollower(newFollower);
+//            } else {
+//                throw new RuntimeException("Cannot add follower "
+//                        + newFollower + " to " + this.toString());
+//            }
+//        }
     }
 
     /**
@@ -55,5 +58,9 @@ public abstract class AbsSegmentedFeature<F extends IFeature> extends AbsFeature
     @Override
     public int getNumSegments() {
         return segments.size();
+    }
+
+    public boolean isComplete() {
+        throw new UnsupportedOperationException("Not implemented");
     }
 }
