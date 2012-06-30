@@ -6,7 +6,9 @@ package carcassonne.board;
 
 import carcassonne.basic.tiles.Edge;
 import carcassonne.features.IFeature;
+import carcassonne.features.IFeatureSegment;
 import carcassonne.followers.Follower;
+import carcassonne.tiles.EdgeUtils;
 import carcassonne.tiles.ITile;
 import java.util.*;
 
@@ -24,6 +26,8 @@ public class TilePlacement implements ITile, ITilePlacement {
     }
     private final Map<Edge, ITilePlacement> edgeMap = new HashMap<>();
     
+    private final EdgeUtils edgeUtils = new EdgeUtils(); // TODO inject
+    
     /**
      * Deployed follower
      */
@@ -36,18 +40,35 @@ public class TilePlacement implements ITile, ITilePlacement {
     /**
      * Adds a tile next to the current tile position based on the specified
      * direction
-     * @param tile
+     * @param newTile
      * @param edge 
      */
     @Override
-    public ITilePlacement addTile(ITile tile, Edge edge) {
+    public ITilePlacement addTile(ITile newTile, Edge edge) {
         if (edgeMap.containsKey(edge)) {
             throw new IllegalStateException(edge + " edge of tile '" + getId() + 
                     "' occupied! - " + edgeMap.get(edge));
         }
-        ITilePlacement placement = new TilePlacement(tile);
+        ITilePlacement placement = new TilePlacement(newTile);
         edgeMap.put(edge, placement);
         return placement;
+    }
+    
+    /**
+     * A tile can be added if the edge is vacant and the edge features are
+     * compatible
+     * @param newTile
+     * @param edge
+     * @return true if the new tile can be added, false otherwise
+     */
+    @Override
+    public boolean canAddTile(ITile newTile, Edge edge) {
+        if (edgeMap.containsKey(edge)) {
+            return false; // occupied
+        }
+        IFeatureSegment edgeFeature = tile.getFeature(edge);
+        IFeatureSegment newFeature = newTile.getFeature(edgeUtils.getOpposite(edge));
+        return edgeFeature.getClass().equals(newFeature.getClass());
     }
     
     /**
@@ -91,6 +112,11 @@ public class TilePlacement implements ITile, ITilePlacement {
         return hash;
     }
 
+    @Override
+    public IFeatureSegment getFeature(Edge e) {
+        return tile.getFeature(e);
+    }
+    
     @Override
     public List<IFeature> getFeatures() {
         throw new UnsupportedOperationException("Not supported yet.");

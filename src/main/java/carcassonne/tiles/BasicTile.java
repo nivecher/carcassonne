@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * Landscape tile
@@ -25,7 +24,7 @@ public class BasicTile implements ITile {
     /**
      * Map of segments by tile position
      */
-    private final Map<Edge, IFeatureSegment> segmentMap = new HashMap<>();
+    private final Map<Edge, IFeatureSegment> edgeMap = new HashMap<>();
     private final List<IFeature> features = new ArrayList<>();
 
     BasicTile(String id) {
@@ -34,12 +33,12 @@ public class BasicTile implements ITile {
 
     private void mapSegment(IFeatureSegment s) {
         for (Edge e : s.getEdges()) {
-            segmentMap.put(e, s);
+            edgeMap.put(e, s);
         }
     }
 
     public List<IFeatureSegment> getSegments() {
-        return new ArrayList<>(segmentMap.values());
+        return new ArrayList<>(edgeMap.values());
     }
 
     @Override
@@ -72,6 +71,11 @@ public class BasicTile implements ITile {
         return new ArrayList<>(features);
     }
 
+    @Override
+    public IFeatureSegment getFeature(Edge e) {
+        return edgeMap.get(e);
+    }
+    
     void addFeature(IFeature f) {
         features.add(f);
         if (f instanceof IFeatureSegment) {

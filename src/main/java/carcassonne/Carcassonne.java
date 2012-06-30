@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package carcassonne;
 
 import carcassonne.basic.tiles.Edge;
@@ -68,8 +64,12 @@ public class Carcassonne {
         // Place all tiles 
         while (!tiles.isEmpty()) {
             ITile t = tiles.remove(0);
-            LOGGER.log(Level.INFO, "Placing tile: {0}", t);
-            placement = placement.addTile(t, Edge.EAST);
+            Edge edge = Edge.EAST;
+            if (placement.canAddTile(t, edge)) {
+                LOGGER.log(Level.INFO, "Placing tile ''{0}'' ''{1}'' of ''{2}''", 
+                        new Object[]{t.getId(), edge, placement.getTile().getId()});
+                placement = placement.addTile(t, edge);
+            }
         }
     }
     
