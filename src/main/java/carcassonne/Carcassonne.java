@@ -65,10 +65,10 @@ public class Carcassonne {
         while (!tiles.isEmpty()) {
             ITile t = tiles.remove(0);
             Edge edge = Edge.EAST;
-            if (placement.canAddTile(t, edge)) {
+            if (placement.canConnectTile(t, edge)) {
                 LOGGER.log(Level.INFO, "Placing tile ''{0}'' ''{1}'' of ''{2}''", 
                         new Object[]{t.getId(), edge, placement.getTile().getId()});
-                placement = placement.addTile(t, edge);
+                placement = placement.connectTile(t, edge);
             }
         }
     }

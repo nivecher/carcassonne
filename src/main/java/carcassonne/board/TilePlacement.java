@@ -40,43 +40,42 @@ public class TilePlacement implements ITilePlacement {
     }
     
     /**
-     * Deployed follower
-     */
-    private Follower deployedFollower;
-    
-    /**
-     * Adds a tile next to the current tile position based on the specified
+     * Links a tile next to the current tile position based on the specified
      * direction
      * @param newTile
      * @param edge 
      */
     @Override
-    public ITilePlacement addTile(ITile newTile, Edge edge) {
+    public ITilePlacement connectTile(ITile newTile, Edge edge) {
         if (edgeMap.containsKey(edge)) {
             throw new IllegalStateException(edge + " edge of tile '" + getId() + 
                     "' occupied! - " + edgeMap.get(edge));
         }
         Position newPos = edgeUtils.relativePosition(position, edge);
-        ITilePlacement placement = new TilePlacement(newTile, newPos);
+        TilePlacement placement = new TilePlacement(newTile, newPos);
         edgeMap.put(edge, placement);
+        
+        Edge opposite = edgeUtils.getOpposite(edge);
+        placement.edgeMap.put(opposite, this); // link opposite edge
+        
         return placement;
     }
     
     /**
-     * A tile can be added if the edge is vacant and the edge features are
+     * A tile can be linked if the edge is vacant and the edge features are
      * compatible
      * @param newTile
      * @param edge
-     * @return true if the new tile can be added, false otherwise
+     * @return true if the new tile can be linked, false otherwise
      */
     @Override
-    public boolean canAddTile(ITile newTile, Edge edge) {
+    public boolean canConnectTile(ITile newTile, Edge edge) {
         if (edgeMap.containsKey(edge)) {
             return false; // occupied
         }
         IFeatureSegment edgeFeature = tile.getFeature(edge);
         IFeatureSegment newFeature = newTile.getFeature(edgeUtils.getOpposite(edge));
-        return edgeFeature.getClass().equals(newFeature.getClass());
+        return edgeFeature.getClass().isAssignableFrom(newFeature.getClass());
     }
     
     /**
@@ -85,13 +84,27 @@ public class TilePlacement implements ITilePlacement {
      * @return 
      */
     @Override
-    public ITilePlacement getAdjacentTile(Edge edge) {
+    public ITilePlacement getConnectedTile(Edge edge) {
         return edgeMap.get(edge);
     }
     
     @Override
-    public Follower getDeployedFollower() {
-        return deployedFollower;
+    public void deployFollower(Follower follower, IFeature feature) {
+        if (!getFeatures().contains(feature)) {
+            throw new IllegalArgumentException("Feature not on tile: " + feature);
+        }
+        feature.addFollower(follower);
+    }
+    
+    @Override
+    public List<IFeature> getDeployedFeatures() {
+        List<IFeature> deployed = new ArrayList<>();
+        for (IFeature f : getFeatures()) {
+            if (f.hasFollowers()) {
+               deployed.add(f);
+            }
+        }
+        return deployed;
     }
 
     @Override
@@ -132,12 +145,12 @@ public class TilePlacement implements ITilePlacement {
     
     @Override
     public List<IFeature> getFeatures() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return tile.getFeatures();
     }
 
     @Override
     public String toString() {
         return "TilePlacement{" + "tile=" + tile + '}';
     }
-    
+
 }

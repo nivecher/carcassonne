@@ -17,7 +17,7 @@ import java.util.List;
  */
 public abstract class AbsSegmentedFeature<S extends IFeatureSegment>
         extends AbsDeployableFeature
-        implements IFollowerDeployable, ISegmented<S> {
+        implements ISegmented<S> {
 
     private final List<S> segments = new ArrayList<>();
 

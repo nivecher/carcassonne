@@ -37,11 +37,21 @@ public abstract class AbsDeployableFeature implements IFeature, IFollowerDeploya
     
     @Override
     public void addFollower(Follower follower) {
+        
+        if (follower.getRole() != null) {
+            throw new IllegalStateException("Follower already deployed as role: " +
+                    follower.getRole());
+        }
         this.followers.add(follower);
+        follower.setRole(followerRole);
     }
     
     @Override
     public void removeFollower(Follower follower) {
+        if (!this.followers.contains(follower)) {
+            throw new IllegalArgumentException("Unknown follower: " + follower);
+        }
+        follower.setRole(null);
         this.followers.remove(follower);
     }
     
