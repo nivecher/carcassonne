@@ -5,8 +5,10 @@
 package carcassonne.board;
 
 import carcassonne.basic.tiles.Edge;
+import carcassonne.features.IFeature;
 import carcassonne.followers.Follower;
 import carcassonne.tiles.ITile;
+import java.util.List;
 
 /**
  *
@@ -21,20 +23,35 @@ public interface ITilePlacement extends ITile {
      * @param edge
      * @return new tile placement 
      */
-    ITilePlacement addTile(ITile tile, Edge edge);
+    ITilePlacement connectTile(ITile tile, Edge edge);
 
     ITile getTile();
 
-    Follower getDeployedFollower();
+    /**
+     * Returns all the feature that have deployed followers on the tile
+     * @return deployed features
+     */
+    List<IFeature> getDeployedFeatures();
+    
+    /**
+     * Deploys a follower onto the specified  feature
+     * @param follower
+     * @param feature 
+     */
+    void deployFollower(Follower follower, IFeature feature);
 
     /**
      * Returns the tile next to this tile on the specified edge
      * @param edge
      * @return
      */
-    ITilePlacement getAdjacentTile(Edge edge);
+    ITilePlacement getConnectedTile(Edge edge);
  
-    boolean canAddTile(ITile tile, Edge edge);
+    boolean canConnectTile(ITile tile, Edge edge);
     
+    /**
+     * Tile's position within the play area
+     * @return 
+     */
     Position getPosition();
 }

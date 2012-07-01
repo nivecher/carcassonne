@@ -15,9 +15,10 @@ public interface IFollowerDeployable {
 
     void addFollower(Follower follower);
 
+    void removeFollower(Follower follower);
+
     Role getFollowerRole();
 
     boolean hasFollowers();
 
-    void removeFollower(Follower follower);
 }
