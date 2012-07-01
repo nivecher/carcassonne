@@ -57,11 +57,18 @@ public class TilePlacementTest {
     
     private void givenTile3Features() {
         RoadSegment road = new RoadSegment();
-        given(tile2.getFeature(Edge.NORTH)).willReturn(new FieldSegment());
-        given(tile2.getFeature(Edge.EAST)).willReturn(road);
-        given(tile2.getFeature(Edge.SOUTH)).willReturn(road);
-        given(tile2.getFeature(Edge.WEST)).willReturn(new CitySegment());
+        given(tile3.getFeature(Edge.NORTH)).willReturn(new FieldSegment());
+        given(tile3.getFeature(Edge.EAST)).willReturn(road);
+        given(tile3.getFeature(Edge.SOUTH)).willReturn(road);
+        given(tile3.getFeature(Edge.WEST)).willReturn(new CitySegment());
     }
+	
+	private void givenFeature1() {
+		// given feature1 ("field") on tile1
+        given(tile1.getFeatures()).willReturn(Arrays.asList(feature1));
+		// TODO move to feature test
+//        given(feature1.getFollowerRole()).willReturn(Role.Farmer);
+	}
     
     @BeforeClass
     public static void setUpClass() throws Exception {
@@ -215,13 +222,21 @@ public class TilePlacementTest {
     public void testDeployedFollower() {
         System.out.println("deployFollower");
         
-        // given feature1 ("field") on tile1
-        given(tile1.getFeatures()).willReturn(Arrays.asList(feature1));
-        given(feature1.getFollowerRole()).willReturn(Role.Farmer);
+		// given feature1 not on tile1
+		
+		// when
+		try {
+			instance.deployFollower(follower1, feature1);
+			fail("Feature not checked during deployment");
+		} catch (Exception ex) {
+			// then exception thrown
+		}
+		
+        givenFeature1();
         
         // when
         instance.deployFollower(follower1, feature1);
-        verify(follower1).setRole(Role.Farmer);
+        verify(feature1).addFollower(follower1);
         
         // TODO add more tests
     }
@@ -233,7 +248,8 @@ public class TilePlacementTest {
     public void testGetDeployedFeatures() {
         System.out.println("getDeployedFeatures");
         
-        // given new instance
+        // given new instance and feature1
+		givenFeature1();
         
         // when
         List<IFeature> deployed = instance.getDeployedFeatures();
