@@ -6,12 +6,16 @@ import carcassonne.basic.tiles.TileSet;
 import carcassonne.board.IPlayArea;
 import carcassonne.board.ITilePlacement;
 import carcassonne.board.PlayArea;
+import carcassonne.followers.Color;
+import carcassonne.game.BasicGame;
+import carcassonne.players.IPlayerFactory;
+import carcassonne.players.PlayerFactory;
 import carcassonne.tiles.BasicTileBuilder;
 import carcassonne.tiles.EdgeUtils;
 import carcassonne.tiles.ITile;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.bind.JAXBContext;
@@ -24,11 +28,10 @@ public class Carcassonne {
 
     private static final Logger LOGGER = Logger.getLogger(Carcassonne.class.getName());
     private static final String BASIC_TILES_XML = "/basic-tiles.xml";
-    private static final String INNS_CATHEDRALS_XML = "/expansions/inns-cathedrals-tiles.xml";
     private static final String START_TILE_ID = "D";
 
     private final EdgeUtils edgeUtils;
-    private final BasicTileBuilder builder;
+    private final BasicTileBuilder basicTileBuilder;
     private ITile startTile = null;
     
     /**
@@ -48,43 +51,77 @@ public class Carcassonne {
     
     private Carcassonne(EdgeUtils edgeUtils, BasicTileBuilder builder) {
         this.edgeUtils = edgeUtils;
-        this.builder = builder;
+        this.basicTileBuilder = builder;
     }
 
     public void start() throws Exception {
         List<ITile> tiles = createTiles();
         LOGGER.info("Creating play area");
+		
+		IPlayerFactory playerFactory = new PlayerFactory();
+		
         IPlayArea pArea = new PlayArea();
-        LOGGER.log(Level.INFO, "Placing start tile: {0}", startTile);
-        tiles.remove(startTile);
-        LOGGER.info("Shuffling tiles");
-        Collections.shuffle(tiles);
-        ITilePlacement placement = pArea.setStartTile(startTile);
+		
+		BasicGame game = new BasicGame(pArea, tiles);
+		
+		LOGGER.info("Loading expansions");
+		// TODO move to carcassone.properties
+		Properties props = new Properties();
+		props.put("expansions", "inns_cathedrals");
+		props.put("inns_cathedrals.tiles.builder", 
+				"carcassonne.expansions.inns_cathedrals.ICTileBuilder");
+		props.put("inns_cathedrals.tiles.package", 
+				"carcassonne.inns_cathedrals.tiles");
+		props.put("inns_cathedrals.tiles.xml", 
+				"/expansions/inns-cathedrals-tiles.xml");
+		new ExpansionLoader(props).loadExpansions(game);
+		
+		LOGGER.info("Creating players");
+		for (Color c : Color.values()) {
+			LOGGER.log(Level.INFO, "Creating {0} player", c);
+			game.addPlayer(playerFactory.createPlayer(c));
+		}
+		
+		int totalTiles = game.getNumTiles();
+		ITilePlacement placement = game.start(startTile);
+		
         // TODO temporary
         // Place all tiles 
+		int placedTiles = 0;
         while (!tiles.isEmpty()) {
             ITile t = tiles.remove(0);
-            Edge edge = Edge.EAST;
-            if (placement.canConnectTile(t, edge)) {
-                LOGGER.log(Level.INFO, "Placing tile ''{0}'' ''{1}'' of ''{2}''", 
-                        new Object[]{t.getId(), edge, placement.getTile().getId()});
-                placement = placement.connectTile(t, edge);
-            }
+			boolean placed = false;
+            for (Edge edge : Edge.values()) {
+				if (placement.canConnectTile(t, edge)) {
+					LOGGER.log(Level.INFO, "Placing tile ''{0}'' {1} of ''{2}''", 
+							new Object[]{t.getId(), edge, placement.getTile().getId()});
+					placement = placement.connectTile(t, edge);
+					placedTiles++;
+					placed = true;
+					break;
+				}
+			}
+			if (!placed) {
+				LOGGER.log(Level.WARNING, "Could not place tile ''{0}'' on ''{1}''", 
+						new Object[]{t.getId(), placement.getTile().getId()});
+			}
         }
+		LOGGER.log(Level.INFO, "Placed {0} of {1} tiles", 
+				new Object[] {placedTiles, totalTiles});
     }
     
     private List<ITile> createTiles() throws Exception {
         
         List<ITile> tiles = new ArrayList<>();
         
-        TileSet basicSet = builder.loadTiles(BASIC_TILES_XML, 
+        TileSet basicSet = basicTileBuilder.loadTiles(BASIC_TILES_XML, 
                 JAXBContext.newInstance("carcassonne.basic.tiles"));
         LOGGER.log(Level.INFO, "Loading basic tiles");
         int basicTiles = 0;
         for (Tile t : basicSet.getTile()) {
             LOGGER.log(Level.INFO, "Loading tile: {0}", t.getId());
             for (int i = 0; i < t.getInstances(); i++) {
-                ITile tile = builder.buildTile(t);
+                ITile tile = basicTileBuilder.buildTile(t);
                 edgeUtils.validateEdges(tile);
                 tiles.add(tile);
                 if (startTile == null && tile.getId().equals(START_TILE_ID)) {
@@ -94,24 +131,7 @@ public class Carcassonne {
             }
         }
         LOGGER.log(Level.INFO, "{0} basic tiles created", basicTiles);
-        
-        TileSet icSet = builder.loadTiles(INNS_CATHEDRALS_XML,
-                JAXBContext.newInstance("carcassonne.inns_cathedrals.tiles"));
-        LOGGER.log(Level.INFO, "Loading Inns & Cathedrals tiles");
-        int icTiles = 0;
-        for (Tile t : icSet.getTile()) {
-            LOGGER.log(Level.INFO, "Loading tile: {0}", t.getId());
-            for (int i = 0; i < t.getInstances(); i++) {
-                ITile tile = builder.buildTile(t);
-                edgeUtils.validateEdges(tile);
-                tiles.add(tile);
-                icTiles++;
-            }
-        }
-        LOGGER.log(Level.INFO, "{0} Inns & Cathedrals tiles created", 
-                icTiles);
 
-        // TODO add more expansions
         return tiles;
     }
 

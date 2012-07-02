@@ -21,4 +21,6 @@ public interface ITile {
     List<IFeature> getFeatures();
 
     IFeatureSegment getFeature(Edge edge);
+	
+	List<IFeatureSegment> getSegments();
 }

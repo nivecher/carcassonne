@@ -48,7 +48,7 @@ public class TilePlacement implements ITilePlacement {
     @Override
     public ITilePlacement connectTile(ITile newTile, Edge edge) {
         if (edgeMap.containsKey(edge)) {
-            throw new IllegalStateException(edge + " edge of tile '" + getId() + 
+            throw new IllegalStateException(edge + " edge of tile '" + tile.getId() + 
                     "' occupied! - " + edgeMap.get(edge));
         }
         Position newPos = edgeUtils.relativePosition(position, edge);
@@ -90,7 +90,7 @@ public class TilePlacement implements ITilePlacement {
     
     @Override
     public void deployFollower(Follower follower, IFeature feature) {
-        if (!getFeatures().contains(feature)) {
+        if (!tile.getFeatures().contains(feature)) {
             throw new IllegalArgumentException("Feature not on tile: " + feature);
         }
         feature.addFollower(follower);
@@ -99,17 +99,12 @@ public class TilePlacement implements ITilePlacement {
     @Override
     public List<IFeature> getDeployedFeatures() {
         List<IFeature> deployed = new ArrayList<>();
-        for (IFeature f : getFeatures()) {
+        for (IFeature f : tile.getFeatures()) {
             if (f.hasFollowers()) {
                deployed.add(f);
             }
         }
         return deployed;
-    }
-
-    @Override
-    public String getId() {
-        return tile.getId();
     }
 
     @Override
@@ -138,15 +133,16 @@ public class TilePlacement implements ITilePlacement {
         return hash;
     }
 
-    @Override
-    public IFeatureSegment getFeature(Edge e) {
-        return tile.getFeature(e);
-    }
-    
-    @Override
-    public List<IFeature> getFeatures() {
-        return tile.getFeatures();
-    }
+	// TODO add back?
+//    @Override
+//    public IFeatureSegment getFeature(Edge e) {
+//        return tile.getFeature(e);
+//    }
+//    
+//    @Override
+//    public List<IFeature> getFeatures() {
+//        return tile.getFeatures();
+//    }
 
     @Override
     public String toString() {

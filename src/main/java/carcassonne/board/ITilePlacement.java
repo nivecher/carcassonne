@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Morgan
  */
-public interface ITilePlacement extends ITile {
+public interface ITilePlacement {
 
     /**
      * Adds a tile next to the current tile position based on the specified
