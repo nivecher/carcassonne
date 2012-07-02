@@ -59,7 +59,6 @@ public class PlayAreaTest {
         ITilePlacement result = instance.setStartTile(startTile);
         
         // then
-        assertEquals("D", result.getId());
         assertEquals(startTile, result.getTile());
         assertEquals(Position.BASE, result.getPosition());
     }
@@ -82,7 +81,6 @@ public class PlayAreaTest {
         
         // then
         assertEquals(tile1, p1.getTile());
-        assertEquals("A", p1.getId());
         assertEquals(loc, p1.getPosition());
         
         // given - position taken

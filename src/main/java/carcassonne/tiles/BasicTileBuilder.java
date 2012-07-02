@@ -29,15 +29,15 @@ import javax.xml.bind.JAXBElement;
  *
  * @author Morgan
  */
-public class BasicTileBuilder {
+public class BasicTileBuilder implements ITileBuilder {
 
     private static final Logger LOGGER = Logger.getLogger(BasicTileBuilder.class.getName());
 
+	@Override
     public TileSet loadTiles(String xmlFilename, JAXBContext context) throws Exception {
 
         try {
             URL xmlURL = getClass().getResource(xmlFilename);
-//            JAXBContext context = JAXBContext.newInstance(TileSet.class);
             Object ts = context.createUnmarshaller().unmarshal(xmlURL);
             return (TileSet) ts;
         } catch (Exception ex) {
@@ -46,6 +46,7 @@ public class BasicTileBuilder {
         }
     }
     
+	@Override
     public BasicTile buildTile(Tile tile) {
         List<JAXBElement<? extends Feature>> tileFeatures = tile.getFeature();
         BasicTile basicTile = new BasicTile(tile.getId());
@@ -56,7 +57,7 @@ public class BasicTileBuilder {
         return basicTile;
     }
     
-    public IFeature buildFeature(Feature f) {
+    protected IFeature buildFeature(Feature f) {
         IFeature newFeature;
         if (f instanceof Cloister) {
             newFeature = createCloister((Cloister) f);
@@ -72,30 +73,30 @@ public class BasicTileBuilder {
         return newFeature;
     }
     
-    private carcassonne.features.basic.Cloister createCloister(Cloister c) {
+    protected carcassonne.features.basic.Cloister createCloister(Cloister c) {
         return new carcassonne.features.basic.Cloister();
     }
     
-    private void addEdges(AbsFeatureSegment seg, Segment s) {
+    protected void addEdges(AbsFeatureSegment seg, Segment s) {
         for (Edge e : s.getEdge()) {
             seg.addEdge(e);
         }
     }
     
-    private CitySegment createCity(City city) {
+    protected CitySegment createCity(City city) {
         CitySegment seg = new CitySegment();
         seg.setPennants(city.getPennant().size());
         addEdges(seg, city);
         return seg;
     }
 
-    private FieldSegment createField(Field field) {
+    protected FieldSegment createField(Field field) {
         FieldSegment seg = new FieldSegment();
         addEdges(seg, field);
         return seg;
     }
     
-    private RoadSegment createRoad(Road road) {
+    protected RoadSegment createRoad(Road road) {
         RoadSegment seg = new RoadSegment();
         addEdges(seg, road);
         return seg;

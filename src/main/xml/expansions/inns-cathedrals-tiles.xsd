@@ -37,18 +37,18 @@ and open the template in the editor.
         </xs:complexContent>
     </xs:complexType>
     
-    <xs:complexType name="road">
+    <xs:complexType name="roadWithInn">
         <xs:complexContent>
             <xs:extension base="basic:road">
                 <xs:sequence>
-                    <xs:element name="inn" type="ic:inn" minOccurs="0"/>
+                    <xs:element name="inn" type="ic:inn"/>
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
     
 <!--    <xs:element name="inn" type="ic:inn" substitutionGroup="basic:feature"/>-->
-    <xs:element name="road" type="ic:road" substitutionGroup="basic:road"/>
+    <xs:element name="roadWithInn" type="ic:roadWithInn" substitutionGroup="basic:road"/>
     <xs:element name="cathedral" type="ic:cathedral" substitutionGroup="basic:city"/>
         
 </xs:schema>

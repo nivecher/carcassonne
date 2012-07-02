@@ -37,6 +37,7 @@ public class BasicTile implements ITile {
         }
     }
 
+	@Override
     public List<IFeatureSegment> getSegments() {
         return new ArrayList<>(edgeMap.values());
     }
@@ -46,20 +47,17 @@ public class BasicTile implements ITile {
         return id;
     }
 
-//    @Override
-//    public boolean equals(Object obj) {
-//        if (obj == null) {
-//            return false;
-//        }
-//        if (getClass() != obj.getClass()) {
-//            return false;
-//        }
-//        final BasicTile other = (BasicTile) obj;
-//        if (!Objects.equals(this.id, other.id)) {
-//            return false;
-//        }
-//        return true;
-//    }
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final BasicTile other = (BasicTile) obj;
+		return true;
+	}
 
     @Override
     public int hashCode() {

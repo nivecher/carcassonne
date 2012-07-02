@@ -20,12 +20,12 @@
             <basic:edgeSegment>west-south</basic:edgeSegment>
             <basic:edgeSegment>south-west</basic:edgeSegment>
         </basic:field>
-        <ic:road>
+        <ic:roadWithInn>
             <basic:description>Road leading to the inn</basic:description>
             <basic:edge>south</basic:edge>
             <basic:edge>west</basic:edge>
             <ic:inn/>
-        </ic:road>
+        </ic:roadWithInn>
     </basic:tile>
     
     <basic:tile id="EB" instances="1">
@@ -40,11 +40,11 @@
             <basic:edgeSegment>north-west</basic:edgeSegment>
             <basic:edgeSegment>south-west</basic:edgeSegment>
         </basic:field>
-        <ic:road>
+        <ic:roadWithInn>
             <basic:edge>north</basic:edge>
             <basic:edge>south</basic:edge>
             <ic:inn/>
-        </ic:road>
+        </ic:roadWithInn>
     </basic:tile>
     <basic:tile id="EC" instances="1">
         <basic:field>
@@ -61,13 +61,13 @@
             <basic:edgeSegment>west-south</basic:edgeSegment>
             <basic:edgeSegment>south-west</basic:edgeSegment>
         </basic:field>
-        <ic:road>
+        <ic:roadWithInn>
             <basic:description>
                 Road from the crossing in the center to the east edge
             </basic:description>
             <basic:edge>east</basic:edge>
             <ic:inn/>
-        </ic:road>
+        </ic:roadWithInn>
         <basic:road>
             <basic:description>
                 Road from the crossing in the center to the south edge
@@ -230,11 +230,11 @@
             <basic:edgeSegment>east-south</basic:edgeSegment>
             <basic:edgeSegment>south-east</basic:edgeSegment>
         </basic:field>
-        <ic:road>
+        <ic:roadWithInn>
             <basic:edge>east</basic:edge>
             <basic:edge>south</basic:edge>
             <ic:inn/>
-        </ic:road>
+        </ic:roadWithInn>
     </basic:tile>
     <basic:tile id="EM" instances="1">
         <basic:city>
@@ -249,11 +249,11 @@
             <basic:edgeSegment>south-west</basic:edgeSegment>
             <basic:edgeSegment>west-south</basic:edgeSegment>
         </basic:field>
-        <ic:road>
+        <ic:roadWithInn>
             <basic:edge>south</basic:edge>
             <basic:edge>west</basic:edge>
             <ic:inn/>
-        </ic:road>
+        </ic:roadWithInn>
     </basic:tile>
     <basic:tile id="EN" instances="1">
         <basic:city>
@@ -267,13 +267,13 @@
         <basic:field>
             <basic:edgeSegment>south-west</basic:edgeSegment>
         </basic:field>
-        <ic:road>
+        <ic:roadWithInn>
             <basic:description>
                 Road from city to south edge
             </basic:description>
             <basic:edge>south</basic:edge>
             <ic:inn/>
-        </ic:road>
+        </ic:roadWithInn>
     </basic:tile>
     <basic:tile id="EO" instances="1">
         <basic:city>
