@@ -11,7 +11,6 @@ import carcassonne.features.basic.CitySegment;
 import carcassonne.features.basic.FieldSegment;
 import carcassonne.features.basic.RoadSegment;
 import carcassonne.followers.Follower;
-import carcassonne.followers.Role;
 import carcassonne.tiles.ITile;
 import java.util.Arrays;
 import java.util.List;
@@ -36,7 +35,9 @@ public class TilePlacementTest {
     @Mock private ITile tile3;
     @Mock private Position pos1;
     @Mock private Follower follower1;
-    @Mock private IFeature feature1;
+    @Mock private IFeatureSegment feature1;
+    @Mock private IFeatureSegment feature2;
+    @Mock private IFeatureSegment feature3;
     
     public TilePlacementTest() {
     }
@@ -64,10 +65,19 @@ public class TilePlacementTest {
     }
 	
 	private void givenFeature1() {
-		// given feature1 ("field") on tile1
-        given(tile1.getFeatures()).willReturn(Arrays.asList(feature1));
-		// TODO move to feature test
-//        given(feature1.getFollowerRole()).willReturn(Role.Farmer);
+        given(feature1.hasFollowers()).willReturn(false);
+	}
+	
+	private void givenFeature2() {
+        given(feature2.hasFollowers()).willReturn(true);
+	}
+	
+	private void givenFeature3() {
+        given(feature3.hasFollowers()).willReturn(true);
+	}
+	
+	private void givenFeatures(IFeature... features) {
+        given(tile1.getFeatures()).willReturn(Arrays.asList(features));
 	}
     
     @BeforeClass
@@ -232,13 +242,12 @@ public class TilePlacementTest {
 			// then exception thrown
 		}
 		
-        givenFeature1();
+        givenFeatures(feature1);
         
         // when
         instance.deployFollower(follower1, feature1);
         verify(feature1).addFollower(follower1);
         
-        // TODO add more tests
     }
 
     /**
@@ -250,6 +259,7 @@ public class TilePlacementTest {
         
         // given new instance and feature1
 		givenFeature1();
+		givenFeatures(feature1); // feature1 only
         
         // when
         List<IFeature> deployed = instance.getDeployedFeatures();
@@ -257,11 +267,20 @@ public class TilePlacementTest {
         // then deployed features list empty
         assertTrue(deployed.isEmpty());
         
-        // given - follower deployed
-        instance.deployFollower(follower1, feature1);
-        
-        // TODO add more tests
-        fail("Not implemented");
+		// given featurs1-3
+		// feature2 and feature3 have followers
+		givenFeature2();
+		givenFeature3();
+		givenFeatures(feature1, feature2, feature3); // feature1 added
+		
+		// when
+		deployed = instance.getDeployedFeatures();
+		
+		// then deployed features contains only feature2 and feature3
+		assertEquals(2, deployed.size());
+		assertFalse(deployed.contains(feature1));
+		assertTrue(deployed.contains(feature2));
+		assertTrue(deployed.contains(feature3));
     }
     
     /**
@@ -270,12 +289,38 @@ public class TilePlacementTest {
     @Test
     public void testGetPosition() {
         System.out.println("getPosition");
-        TilePlacement instance = null;
-        Position expResult = null;
+		
+		// given instance with tile1 at pos1
+		
+		// when
         Position result = instance.getPosition();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+		
+		// then - pos1 returned
+        assertEquals(pos1, result);
+		
+		// given tile2 connected at east edge and pos1 x=2,y=3
+		givenTile1Features();
+		givenTile2Features();
+		givenTile3Features();
+		
+		when(pos1.getX()).thenReturn(2);
+		when(pos1.getY()).thenReturn(3);
+				
+		// when connected at the east
+		ITilePlacement t2 = instance.connectTile(tile2, Edge.EAST);
+		result = t2.getPosition();
+		
+		// then
+		assertEquals(3, result.getX());
+		assertEquals(3, result.getY());
+		
+		// when
+		ITilePlacement t3 = t2.connectTile(tile3, Edge.NORTH);
+		result = t3.getPosition();
+		
+		// then
+		assertEquals(3, result.getX());
+		assertEquals(4, result.getY());
     }
 
     /**
@@ -284,13 +329,22 @@ public class TilePlacementTest {
     @Test
     public void testGetFeature() {
         System.out.println("getFeature");
-        Edge e = null;
-        TilePlacement instance = null;
-        IFeatureSegment expResult = null;
-        IFeatureSegment result = instance.getFeature(e);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+		
+		// given
+		given(tile1.getFeature(Edge.NORTH)).willReturn(feature1);
+		
+		// when get result
+        IFeatureSegment result = instance.getFeature(Edge.NORTH);
+        
+		// then feature matches tile1 feature
+		assertEquals(feature1, result);
+
+		result = instance.getFeature(Edge.EAST);
+		assertNull(result);
+		result = instance.getFeature(Edge.SOUTH);
+		assertNull(result);
+		result = instance.getFeature(Edge.WEST);
+		assertNull(result);
     }
 
     /**
@@ -299,12 +353,13 @@ public class TilePlacementTest {
     @Test
     public void testGetFeatures() {
         System.out.println("getFeatures");
-        TilePlacement instance = null;
-        List expResult = null;
-        List result = instance.getFeatures();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
+		givenFeatures(feature1, feature2, feature3);
+		
+		List result = instance.getFeatures();
+        assertEquals(3, result.size());
+		assertArrayEquals(new IFeature[] {feature1, feature2, feature3}, 
+				result.toArray());
     }
 
 }

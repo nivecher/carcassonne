@@ -41,25 +41,31 @@ public class Position {
         return y;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Position other = (Position) obj;
-        return true;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final Position other = (Position) obj;
+		if (this.x != other.x) {
+			return false;
+		}
+		if (this.y != other.y) {
+			return false;
+		}
+		return true;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 47 * hash + this.x;
-        hash = 47 * hash + this.y;
-        return hash;
-    }
+	@Override
+	public int hashCode() {
+		int hash = 7;
+		hash = 19 * hash + this.x;
+		hash = 19 * hash + this.y;
+		return hash;
+	}
 
     @Override
     public String toString() {
