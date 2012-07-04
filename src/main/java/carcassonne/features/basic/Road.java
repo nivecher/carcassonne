@@ -16,5 +16,10 @@ public class Road extends AbsSegmentedFeature<RoadSegment> {
     public Road() {
         super(Role.Thieve);
     }
+
+	@Override
+	public String toString() {
+		return "Road{" + '}';
+	}
     
 }

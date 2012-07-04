@@ -5,14 +5,14 @@
 package carcassonne.features.basic;
 
 import carcassonne.features.AbsFeatureSegment;
-import carcassonne.features.IFeatureSegment;
+import carcassonne.features.ISegment;
 import carcassonne.followers.Role;
 
 /**
  *
  * @author Morgan
  */
-public class CitySegment extends AbsFeatureSegment implements IFeatureSegment {
+public class CitySegment extends AbsFeatureSegment implements ISegment {
 
     private int pennants = 0;
     

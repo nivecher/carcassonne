@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Morgan
  */
-public abstract class AbsDeployableFeature implements IFeature, IFollowerDeployable {
+public abstract class AbsDeployableFeature implements IFeature {
 
     protected final List<Follower> followers = new ArrayList<>();
     

@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Morgan
  */
-public interface IFeatureSegment extends IFeature {
+public interface ISegment extends IFeature {
     
     /**
      * The open edges of a feature

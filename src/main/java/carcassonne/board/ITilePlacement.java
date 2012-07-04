@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Morgan
  */
-public interface ITilePlacement {
+public interface ITilePlacement extends ITile {
 
     /**
      * Adds a tile next to the current tile position based on the specified
@@ -26,9 +26,9 @@ public interface ITilePlacement {
     ITilePlacement connectTile(ITile tile, Edge edge);
 
     ITile getTile();
-
+	
     /**
-     * Returns all the feature that have deployed followers on the tile
+     * Returns all the features that have deployed followers on the tile
      * @return deployed features
      */
     List<IFeature> getDeployedFeatures();
@@ -54,4 +54,8 @@ public interface ITilePlacement {
      * @return 
      */
     Position getPosition();
+	
+	void addTileListener(ITilePlacementListener listener);
+	
+	void removeTileListener(ITilePlacementListener listener);
 }
