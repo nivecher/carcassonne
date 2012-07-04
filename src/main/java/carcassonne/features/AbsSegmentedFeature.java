@@ -72,7 +72,9 @@ public abstract class AbsSegmentedFeature<S extends ISegment>
 		}
 	}
 	
+	@Override
     public boolean isComplete() {
+		// TODO complete if any open edges
         throw new UnsupportedOperationException("Not implemented");
     }
 }

@@ -24,7 +24,7 @@ public class CitySegment extends AbsFeatureSegment implements ISegment {
         this.pennants = pennants;
     }
     
-    public int getPennatns() {
+    public int getPennants() {
         return pennants;
     }
 }
