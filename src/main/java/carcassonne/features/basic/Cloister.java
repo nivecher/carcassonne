@@ -4,7 +4,6 @@
  */
 package carcassonne.features.basic;
 
-import carcassonne.board.ITilePlacement;
 import carcassonne.features.AbsDeployableFeature;
 import carcassonne.followers.Role;
 

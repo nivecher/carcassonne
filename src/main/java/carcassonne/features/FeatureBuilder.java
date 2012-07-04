@@ -25,11 +25,11 @@ import java.util.Set;
  */
 public class FeatureBuilder {
 
+	// TODO use playArea?
 	private final IPlayArea playArea;
 	// TODO inject
 	private final EdgeUtils edgeUtils = new EdgeUtils();
 
-	// TODO implement
 	public FeatureBuilder(IPlayArea playArea) {
 		this.playArea = playArea;
 	}
