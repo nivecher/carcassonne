@@ -6,11 +6,15 @@ package carcassonne.board;
 
 import carcassonne.basic.tiles.Edge;
 import carcassonne.features.IFeature;
-import carcassonne.features.IFeatureSegment;
+import carcassonne.features.ISegment;
 import carcassonne.followers.Follower;
 import carcassonne.tiles.EdgeUtils;
 import carcassonne.tiles.ITile;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * Decorator around a tile that gives it a placement relative to other tiles.
@@ -28,6 +32,8 @@ public class TilePlacement implements ITilePlacement {
     private final Map<Edge, ITilePlacement> edgeMap = new HashMap<>();
     
     private final EdgeUtils edgeUtils = new EdgeUtils(); // TODO inject
+	
+	private final List<ITilePlacementListener> listeners = new ArrayList<>();
     
     /**
      * Construct a new tile placement
@@ -58,6 +64,8 @@ public class TilePlacement implements ITilePlacement {
         Edge opposite = edgeUtils.getOpposite(edge);
         placement.edgeMap.put(opposite, this); // link opposite edge
         
+		fireTilePlaced(placement);
+		
         return placement;
     }
     
@@ -73,8 +81,8 @@ public class TilePlacement implements ITilePlacement {
         if (edgeMap.containsKey(edge)) {
             return false; // occupied
         }
-        IFeatureSegment edgeFeature = tile.getFeature(edge);
-        IFeatureSegment newFeature = newTile.getFeature(edgeUtils.getOpposite(edge));
+        ISegment edgeFeature = tile.getFeature(edge);
+        ISegment newFeature = newTile.getFeature(edgeUtils.getOpposite(edge));
         return edgeFeature.getClass().isAssignableFrom(newFeature.getClass());
     }
     
@@ -96,6 +104,17 @@ public class TilePlacement implements ITilePlacement {
         feature.addFollower(follower);
     }
     
+    @Override
+    public List<ISegment> getSegments() {
+        List<ISegment> segs = new ArrayList<>();
+        for (IFeature f : tile.getFeatures()) {
+			if (f instanceof ISegment) {
+				segs.add((ISegment) f);
+			}
+        }
+        return segs;
+    }
+	
     @Override
     public List<IFeature> getDeployedFeatures() {
         List<IFeature> deployed = new ArrayList<>();
@@ -133,20 +152,40 @@ public class TilePlacement implements ITilePlacement {
         return hash;
     }
 
-	// TODO add back?
-//    @Override
-//    public IFeatureSegment getFeature(Edge e) {
-//        return tile.getFeature(e);
-//    }
-//    
-//    @Override
-//    public List<IFeature> getFeatures() {
-//        return tile.getFeatures();
-//    }
+    @Override
+    public ISegment getFeature(Edge e) {
+        return tile.getFeature(e);
+    }
+    
+    @Override
+    public List<IFeature> getFeatures() {
+        return tile.getFeatures();
+    }
 
     @Override
     public String toString() {
         return "TilePlacement{" + "tile=" + tile + '}';
     }
+
+	@Override
+	public void addTileListener(ITilePlacementListener listener) {
+		listeners.add(listener);
+	}
+
+	@Override
+	public void removeTileListener(ITilePlacementListener listener) {
+		listeners.remove(listener);
+	}
+	
+	private void fireTilePlaced(ITilePlacement placement) {
+		for (ITilePlacementListener l : listeners) {
+			l.tilePlaced(placement);
+		}
+	}
+
+	@Override
+	public String getId() {
+		return tile.getId();
+	}
 
 }

@@ -10,7 +10,7 @@ import carcassonne.basic.tiles.EdgeSegment;
 import static carcassonne.basic.tiles.EdgeSegment.*;
 import carcassonne.board.Position;
 import carcassonne.features.IFeature;
-import carcassonne.features.IFeatureSegment;
+import carcassonne.features.ISegment;
 import java.util.EnumMap;
 import java.util.EnumSet;
 
@@ -46,8 +46,8 @@ public class EdgeUtils {
     public void validateEdges(ITile t) {
         EnumMap<Edge, IFeature> edgeMap = new EnumMap<>(Edge.class);
         for (IFeature f : t.getFeatures()) {
-            if (f instanceof IFeatureSegment) {
-                IFeatureSegment seg = (IFeatureSegment) f;
+            if (f instanceof ISegment) {
+                ISegment seg = (ISegment) f;
                 for (Edge e : seg.getEdges()) {
                     if (edgeMap.containsKey(e)) {
                         throw new RuntimeException("Tile '" + t.getId() + "' " +

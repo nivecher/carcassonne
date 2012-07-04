@@ -8,7 +8,7 @@ import carcassonne.basic.tiles.Edge;
 import java.util.List;
 
 import carcassonne.features.IFeature;
-import carcassonne.features.IFeatureSegment;
+import carcassonne.features.ISegment;
 
 /**
  *
@@ -20,7 +20,7 @@ public interface ITile {
     
     List<IFeature> getFeatures();
 
-    IFeatureSegment getFeature(Edge edge);
+    ISegment getFeature(Edge edge);
 	
-	List<IFeatureSegment> getSegments();
+	List<ISegment> getSegments();
 }

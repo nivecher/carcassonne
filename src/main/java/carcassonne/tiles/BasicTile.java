@@ -6,7 +6,7 @@ package carcassonne.tiles;
 
 import carcassonne.basic.tiles.Edge;
 import carcassonne.features.IFeature;
-import carcassonne.features.IFeatureSegment;
+import carcassonne.features.ISegment;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,21 +24,21 @@ public class BasicTile implements ITile {
     /**
      * Map of segments by tile position
      */
-    private final Map<Edge, IFeatureSegment> edgeMap = new HashMap<>();
+    private final Map<Edge, ISegment> edgeMap = new HashMap<>();
     private final List<IFeature> features = new ArrayList<>();
 
     BasicTile(String id) {
         this.id = id;
     }
 
-    private void mapSegment(IFeatureSegment s) {
+    private void mapSegment(ISegment s) {
         for (Edge e : s.getEdges()) {
             edgeMap.put(e, s);
         }
     }
 
 	@Override
-    public List<IFeatureSegment> getSegments() {
+    public List<ISegment> getSegments() {
         return new ArrayList<>(edgeMap.values());
     }
 
@@ -70,14 +70,14 @@ public class BasicTile implements ITile {
     }
 
     @Override
-    public IFeatureSegment getFeature(Edge e) {
+    public ISegment getFeature(Edge e) {
         return edgeMap.get(e);
     }
     
     void addFeature(IFeature f) {
         features.add(f);
-        if (f instanceof IFeatureSegment) {
-            mapSegment((IFeatureSegment) f);
+        if (f instanceof ISegment) {
+            mapSegment((ISegment) f);
         }
     }
 
