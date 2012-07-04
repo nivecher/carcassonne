@@ -9,7 +9,7 @@ import carcassonne.features.IFeature;
 import carcassonne.features.basic.CitySegment;
 import carcassonne.features.basic.RoadSegment;
 import carcassonne.inns_cathedrals.tiles.Cathedral;
-import carcassonne.inns_cathedrals.tiles.Road;
+import carcassonne.inns_cathedrals.tiles.RoadWithInn;
 import carcassonne.tiles.BasicTileBuilder;
 
 /**
@@ -23,26 +23,24 @@ public class ICTileBuilder extends BasicTileBuilder {
         IFeature newFeature;
         if (f instanceof Cathedral) {
             newFeature = createCathedral((Cathedral) f);
-        } else if (f instanceof Road) {
-            newFeature = createRoadWithInn((Road) f);
+        } else if (f instanceof RoadWithInn) {
+            newFeature = createRoadWithInn((RoadWithInn) f);
         } else {
             newFeature = super.buildFeature(f);
         }
         return newFeature;
     }
 	
-	protected CitySegment createCathedral(Cathedral cathedral) {
-		// TODO
-		CitySegment seg = new CitySegment();
+	protected carcassonne.expansions.inns_cathedrals.Cathedral createCathedral(Cathedral cathedral) {
+		carcassonne.expansions.inns_cathedrals.Cathedral seg = 
+				new carcassonne.expansions.inns_cathedrals.Cathedral();
         seg.setPennants(cathedral.getPennant().size());
         addEdges(seg, cathedral);
         return seg;
     }
 	
-	protected RoadSegment createRoadWithInn(Road road) {
-		// TODO
-		RoadSegment seg = new RoadSegment();
-		road.getInn();
+	protected RoadWithInnSegment createRoadWithInn(RoadWithInn road) {
+		RoadWithInnSegment seg = new RoadWithInnSegment(road.getInn());
 		addEdges(seg, road);
 		return seg;
 	}
