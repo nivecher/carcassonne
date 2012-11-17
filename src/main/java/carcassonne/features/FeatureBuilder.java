@@ -4,20 +4,16 @@
  */
 package carcassonne.features;
 
-import carcassonne.basic.tiles.Edge;
-import carcassonne.board.IPlayArea;
-import carcassonne.board.ITilePlacement;
-import carcassonne.features.basic.City;
-import carcassonne.features.basic.CitySegment;
-import carcassonne.features.basic.Field;
-import carcassonne.features.basic.FieldSegment;
-import carcassonne.features.basic.Road;
-import carcassonne.features.basic.RoadSegment;
-import carcassonne.tiles.EdgeUtils;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import carcassonne.basic.tiles.Edge;
+import carcassonne.board.IPlayArea;
+import carcassonne.board.ITilePlacement;
+import carcassonne.features.basic.*;
+import carcassonne.tiles.EdgeUtils;
 
 /**
  *

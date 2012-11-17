@@ -4,17 +4,18 @@
  */
 package carcassonne;
 
-import carcassonne.basic.tiles.TileSet;
-import carcassonne.game.BasicGame;
-import carcassonne.tiles.EdgeUtils;
-import carcassonne.tiles.ITile;
-import carcassonne.tiles.ITileBuilder;
+import javax.xml.bind.JAXBContext;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.xml.bind.JAXBContext;
+
+import carcassonne.basic.tiles.TileSet;
+import carcassonne.game.BasicGame;
+import carcassonne.tiles.EdgeUtils;
+import carcassonne.tiles.ITile;
+import carcassonne.tiles.ITileBuilder;
 
 /**
  *
@@ -23,9 +24,9 @@ import javax.xml.bind.JAXBContext;
 public class ExpansionLoader {
 	
 	private static final Logger LOGGER = Logger.getLogger(ExpansionLoader.class.getName());
-	
+
 	private final Properties props;
-	// TODO inject
+	// TODO inject EdgeUtils
 	private final EdgeUtils edgeUtils = new EdgeUtils();
 	
 	public ExpansionLoader(Properties props) {

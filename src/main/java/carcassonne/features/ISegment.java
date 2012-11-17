@@ -4,8 +4,9 @@
  */
 package carcassonne.features;
 
-import carcassonne.basic.tiles.Edge;
 import java.util.List;
+
+import carcassonne.basic.tiles.Edge;
 
 /**
  *

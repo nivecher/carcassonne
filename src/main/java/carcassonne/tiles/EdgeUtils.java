@@ -4,18 +4,21 @@
  */
 package carcassonne.tiles;
 
-import carcassonne.basic.tiles.Edge;
-import static carcassonne.basic.tiles.Edge.*;
-import carcassonne.basic.tiles.EdgeSegment;
-import static carcassonne.basic.tiles.EdgeSegment.*;
-import carcassonne.board.Position;
-import carcassonne.features.IFeature;
-import carcassonne.features.ISegment;
 import java.util.EnumMap;
 import java.util.EnumSet;
 
+import carcassonne.basic.tiles.Edge;
+import carcassonne.basic.tiles.EdgeSegment;
+import carcassonne.board.Position;
+import carcassonne.features.IFeature;
+import carcassonne.features.ISegment;
+
+import static carcassonne.basic.tiles.Edge.*;
+import static carcassonne.basic.tiles.EdgeSegment.*;
+
 /**
- *
+ * Utility class that contains various functions for working with Edges and
+ * EdgeSegments
  * @author Morgan
  */
 public class EdgeUtils {
@@ -42,9 +45,15 @@ public class EdgeUtils {
     public EnumSet<EdgeSegment> getSegments(Edge edge) {
         return segmentMap.get(edge);
     }
-    
+
+    /**
+     * Validates that a tile has features defined for all four edges
+     * @param t tile to validate
+     * @throws RuntimeException if tile edges are not valid
+     */
     public void validateEdges(ITile t) {
         EnumMap<Edge, IFeature> edgeMap = new EnumMap<>(Edge.class);
+        // Map all features to edges
         for (IFeature f : t.getFeatures()) {
             if (f instanceof ISegment) {
                 ISegment seg = (ISegment) f;

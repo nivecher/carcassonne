@@ -4,17 +4,14 @@
  */
 package carcassonne.board;
 
+import java.util.*;
+
 import carcassonne.basic.tiles.Edge;
 import carcassonne.features.IFeature;
 import carcassonne.features.ISegment;
 import carcassonne.followers.Follower;
 import carcassonne.tiles.EdgeUtils;
 import carcassonne.tiles.ITile;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 /**
  * Decorator around a tile that gives it a placement relative to other tiles.
@@ -31,14 +28,14 @@ public class TilePlacement implements ITilePlacement {
     }
     private final Map<Edge, ITilePlacement> edgeMap = new HashMap<>();
     
-    private final EdgeUtils edgeUtils = new EdgeUtils(); // TODO inject
+    private final EdgeUtils edgeUtils = new EdgeUtils(); // TODO inject EdgeUtils
 	
 	private final List<ITilePlacementListener> listeners = new ArrayList<>();
     
     /**
      * Construct a new tile placement
-     * @param tile 
-     * @param position
+     * @param tile tile to place
+     * @param position placement's position
      */
     public TilePlacement (ITile tile, Position position) {
         this.tile = tile;
@@ -46,10 +43,10 @@ public class TilePlacement implements ITilePlacement {
     }
     
     /**
-     * Links a tile next to the current tile position based on the specified
-     * direction
-     * @param newTile
-     * @param edge 
+     * Creates a tile placement next to this placement at the specified edge
+     * @param newTile tile to add next to this tile placement
+     * @param edge direction to add new tile
+     * @return tile placement of new tile
      */
     @Override
     public ITilePlacement connectTile(ITile newTile, Edge edge) {
@@ -79,10 +76,12 @@ public class TilePlacement implements ITilePlacement {
     @Override
     public boolean canConnectTile(ITile newTile, Edge edge) {
         if (edgeMap.containsKey(edge)) {
-            return false; // occupied
+            return false; // edge occupied
         }
         ISegment edgeFeature = tile.getFeature(edge);
+        // TODO handle multiple features per edge
         ISegment newFeature = newTile.getFeature(edgeUtils.getOpposite(edge));
+        // TODO Verify edge segments
         return edgeFeature.getClass().isAssignableFrom(newFeature.getClass());
     }
     
