@@ -1,16 +1,13 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package carcassonne.features;
 
-import carcassonne.followers.Follower;
-import carcassonne.followers.Role;
 import java.util.ArrayList;
 import java.util.List;
 
+import carcassonne.followers.Follower;
+import carcassonne.followers.Role;
+
 /**
- *
+ * Feature that can have followers deployed to it
  * @author Morgan
  */
 public abstract class AbsDeployableFeature implements IFeature {

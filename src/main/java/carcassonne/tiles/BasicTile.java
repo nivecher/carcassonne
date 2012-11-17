@@ -4,13 +4,14 @@
  */
 package carcassonne.tiles;
 
-import carcassonne.basic.tiles.Edge;
-import carcassonne.features.IFeature;
-import carcassonne.features.ISegment;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import carcassonne.basic.tiles.Edge;
+import carcassonne.features.IFeature;
+import carcassonne.features.ISegment;
 
 /**
  * Landscape tile

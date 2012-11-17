@@ -4,6 +4,14 @@
  */
 package carcassonne.board;
 
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.*;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+
 import carcassonne.basic.tiles.Edge;
 import carcassonne.features.IFeature;
 import carcassonne.features.ISegment;
@@ -12,14 +20,9 @@ import carcassonne.features.basic.FieldSegment;
 import carcassonne.features.basic.RoadSegment;
 import carcassonne.followers.Follower;
 import carcassonne.tiles.ITile;
-import java.util.Arrays;
-import java.util.List;
-import org.junit.*;
+
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
 
 /**
  *

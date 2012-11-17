@@ -4,14 +4,16 @@
  */
 package carcassonne.board;
 
+import java.util.List;
+
 import carcassonne.basic.tiles.Edge;
 import carcassonne.features.IFeature;
 import carcassonne.followers.Follower;
 import carcassonne.tiles.ITile;
-import java.util.List;
 
 /**
- *
+ * Decorator on a tile that associates it with a position and allows it
+ * to be connected with other tiles
  * @author Morgan
  */
 public interface ITilePlacement extends ITile {
@@ -25,6 +27,10 @@ public interface ITilePlacement extends ITile {
      */
     ITilePlacement connectTile(ITile tile, Edge edge);
 
+    /**
+     * Return the tile at the given tile placement
+     * @return tile
+     */
     ITile getTile();
 	
     /**
