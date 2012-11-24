@@ -6,8 +6,6 @@ package carcassonne.expansions.inns_cathedrals;
 
 import carcassonne.basic.tiles.Feature;
 import carcassonne.features.IFeature;
-import carcassonne.features.basic.CitySegment;
-import carcassonne.features.basic.RoadSegment;
 import carcassonne.inns_cathedrals.tiles.Cathedral;
 import carcassonne.inns_cathedrals.tiles.RoadWithInn;
 import carcassonne.tiles.BasicTileBuilder;

@@ -4,6 +4,8 @@
  */
 package carcassonne.followers;
 
+import carcassonne.board.Position;
+
 /**
  * Playing piece that is placed on features within tiles
  * @author Morgan
@@ -25,6 +27,11 @@ public class Follower {
      * Currently deployed role (if any)
      */
     private Role role;
+
+    /**
+     * Follower's deployed position
+     */
+    private Position position = null;
     
     /**
      * Create a follower
@@ -52,5 +59,13 @@ public class Follower {
      */
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Position getPosition() {
+        return this.position;
+    }
+
+    public  void setPosition(Position position) {
+        this.position = position;
     }
 }

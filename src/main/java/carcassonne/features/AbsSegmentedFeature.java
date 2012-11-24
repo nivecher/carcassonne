@@ -25,6 +25,8 @@ public abstract class AbsSegmentedFeature<S extends ISegment>
      */
     private final Set<S> segments = new HashSet<>();
 
+    private boolean complete = false;
+
     public AbsSegmentedFeature(Role followerRole) {
         super(followerRole);
     }
@@ -57,8 +59,8 @@ public abstract class AbsSegmentedFeature<S extends ISegment>
     /**
      * Returns whether a follower
      *
-     * @param follower
-     * @return
+     * @param follower follower to check if it can be added
+     * @return true if the follower can be added to the feature, false otherwise
      */
     public boolean canAddFollower(Follower follower) {
         return followers.isEmpty()
@@ -84,10 +86,10 @@ public abstract class AbsSegmentedFeature<S extends ISegment>
 	
 	@Override
     public boolean isComplete() {
-		// TODO complete unless any open edges
-        for (S seg : segments) {
-            seg.getEdges();
-        }
-        throw new UnsupportedOperationException("Not implemented");
+        return complete;
+    }
+
+    public void setComplete(boolean complete) {
+        this.complete = complete;
     }
 }

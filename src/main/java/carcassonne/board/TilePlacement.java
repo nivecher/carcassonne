@@ -54,7 +54,7 @@ public class TilePlacement implements ITilePlacement {
             throw new IllegalStateException(edge + " edge of tile '" + tile.getId() + 
                     "' occupied! - " + edgeMap.get(edge));
         }
-        Position newPos = edgeUtils.relativePosition(position, edge);
+        Position newPos = EdgeUtils.relativePosition(position, edge);
         TilePlacement placement = new TilePlacement(newTile, newPos);
         edgeMap.put(edge, placement);
         

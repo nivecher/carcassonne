@@ -20,6 +20,9 @@ import carcassonne.features.ISegment;
  */
 public class BasicTile implements ITile {
 
+    /**
+     * String ID of the tile's type
+     */
     private final String id;
     
     /**
@@ -57,7 +60,7 @@ public class BasicTile implements ITile {
 			return false;
 		}
 		final BasicTile other = (BasicTile) obj;
-		return true;
+		return (this == other); // must be same
 	}
 
     @Override
