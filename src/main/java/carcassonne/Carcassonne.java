@@ -1,5 +1,12 @@
 package carcassonne;
 
+import javax.xml.bind.JAXBContext;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import carcassonne.basic.tiles.Edge;
 import carcassonne.basic.tiles.Tile;
 import carcassonne.basic.tiles.TileSet;
@@ -13,12 +20,6 @@ import carcassonne.players.PlayerFactory;
 import carcassonne.tiles.BasicTileBuilder;
 import carcassonne.tiles.EdgeUtils;
 import carcassonne.tiles.ITile;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.xml.bind.JAXBContext;
 
 /**
  *
@@ -88,8 +89,8 @@ public class Carcassonne {
         // TODO temporary
         // Place all tiles 
 		int placedTiles = 0;
-        while (!tiles.isEmpty()) {
-            ITile t = tiles.remove(0);
+        ITile t = game.drawTile();
+        do {
 			boolean placed = false;
             for (Edge edge : Edge.values()) {
 				if (placement.canConnectTile(t, edge)) {
@@ -105,7 +106,8 @@ public class Carcassonne {
 				LOGGER.log(Level.WARNING, "Could not place tile ''{0}'' on ''{1}''", 
 						new Object[]{t.getId(), placement.getTile().getId()});
 			}
-        }
+            t = game.drawTile();
+        } while(t != null);
 		LOGGER.log(Level.INFO, "Placed {0} of {1} tiles", 
 				new Object[] {placedTiles, totalTiles});
     }

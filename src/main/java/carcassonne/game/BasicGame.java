@@ -4,20 +4,18 @@
  */
 package carcassonne.game;
 
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import carcassonne.board.IPlayArea;
 import carcassonne.board.ITilePlacement;
 import carcassonne.followers.Color;
 import carcassonne.players.Player;
 import carcassonne.tiles.ITile;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
- *
+ * Basic Carcassonne game that contains players, a play area and game tiles
  * @author Morgan
  */
 public class BasicGame {
@@ -31,7 +29,7 @@ public class BasicGame {
 	
 	public BasicGame(IPlayArea playArea, List<ITile> tiles) {
 		this.playArea = playArea;
-		this.tiles = tiles;
+		this.tiles = new ArrayList<>(tiles);
 	}
 	
 	public void addPlayer(Player p) {
@@ -57,4 +55,11 @@ public class BasicGame {
 	public int getNumTiles() {
 		return tiles.size();
 	}
+
+    public ITile drawTile() {
+        if (tiles.isEmpty()) {
+            return null;
+        }
+        return tiles.remove(0);
+    }
 }

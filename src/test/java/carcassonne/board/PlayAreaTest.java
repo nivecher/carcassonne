@@ -4,13 +4,15 @@
  */
 package carcassonne.board;
 
-import carcassonne.tiles.ITile;
 import org.junit.*;
-import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import static org.mockito.BDDMockito.*;
+
+import carcassonne.tiles.ITile;
+
+import static org.junit.Assert.*;
+import static org.mockito.BDDMockito.given;
         
 /**
  *
