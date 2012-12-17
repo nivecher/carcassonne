@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="mockito-1.8">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../Products/downloads/mockito-1.8.5" />
+      <root url="file://$PROJECT_DIR$/../../Products/downloads/mockito-1.8.5" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$PROJECT_DIR$/../../Products/downloads/mockito-1.8.5/javadoc" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../../Products/downloads/mockito-1.8.5" />
+      <root url="file://$PROJECT_DIR$/../../Products/downloads/mockito-1.8.5" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../../Products/downloads/mockito-1.8.5" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../../Products/downloads/mockito-1.8.5" recursive="false" type="SOURCES" />
+  </library>
+</component>
